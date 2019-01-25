@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">ApartmentGuide</string>
-    <string name="drawer_opened">Select an item</string>
+    <string name="drawer_opened">Choose View</string>
     <string name="drawer_closed">Apartment Guide</string>
-
 </resources>
