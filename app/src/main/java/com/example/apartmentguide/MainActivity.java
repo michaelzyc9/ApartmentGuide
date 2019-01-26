@@ -56,7 +56,18 @@ public class MainActivity extends AppCompatActivity {
 
                 // Add code here to update the UI based on the item selected
                 // For example, swap UI fragments here
+                int id = menuItem.getItemId();
+                switch (id){
+                    case R.id.nav_thumbnail_view:
+                        //render thumbnail activity
+                        break;
 
+                    case R.id.nav_map_view:
+                        //render map view
+
+                    default:
+                        break;
+                }
                 return true;
             }
         });
