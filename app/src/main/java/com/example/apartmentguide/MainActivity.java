@@ -51,26 +51,28 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
-                menuItem.setChecked(true);
-                mDrawerLayout.closeDrawers();
-
-                // Add code here to update the UI based on the item selected
-                // For example, swap UI fragments here
-                int id = menuItem.getItemId();
-                switch (id){
-                    case R.id.nav_thumbnail_view:
-                        //render thumbnail activity
-                        break;
-
-                    case R.id.nav_map_view:
-                        //render map view
-
-                    default:
-                        break;
-                }
+                selectDrawerItem(menuItem);
                 return true;
             }
         });
+    }
+
+    private void selectDrawerItem(MenuItem menuItem) {
+
+        //Fragment fragment = null;
+
+        int id = menuItem.getItemId();
+        switch (id){
+
+            default:
+                //fragment = ListViewFragment.newInstance(1);
+        }
+
+//        FragmentManager fragmentManager = getSupportFragmentManager();
+//        fragmentManager.beginTransaction().replace(R.id.container_current, fragment).commit();
+
+        menuItem.setChecked(true);
+        mDrawerLayout.closeDrawers();
 
     }
 
