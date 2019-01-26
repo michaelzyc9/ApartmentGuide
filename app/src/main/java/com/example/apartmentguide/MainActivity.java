@@ -15,10 +15,14 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 
-public class MainActivity extends AppCompatActivity implements ListViewFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements ListViewFragment.OnFragmentInteractionListener,
+        ThumbnailViewFragment.OnFragmentInteractionListener, MapViewFragment.OnFragmentInteractionListener {
 
     private DrawerLayout mDrawerLayout;
+    private FrameLayout fragmentContent;
     private ActionBarDrawerToggle mToggle;
 
     @Override
@@ -30,7 +34,8 @@ public class MainActivity extends AppCompatActivity implements ListViewFragment.
         setSupportActionBar(toolbar);
 
         mDrawerLayout = findViewById(R.id.drawer);
-        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_opened, R.string.drawer_closed){
+        fragmentContent = findViewById(R.id.fragment_content);
+        mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_opened, R.string.drawer_closed) {
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
@@ -42,6 +47,14 @@ public class MainActivity extends AppCompatActivity implements ListViewFragment.
                 super.onDrawerClosed(drawerView);
                 getSupportActionBar().setTitle(R.string.drawer_closed);
             }
+
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+                super.onDrawerSlide(drawerView, slideOffset);
+                fragmentContent.setTranslationX(slideOffset * drawerView.getWidth());
+                mDrawerLayout.bringChildToFront(drawerView);
+                mDrawerLayout.requestLayout();
+            }
         };
         mToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
 
@@ -50,11 +63,16 @@ public class MainActivity extends AppCompatActivity implements ListViewFragment.
         mToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        //default view - list view
+//        FragmentManager fragmentManager = getSupportFragmentManager();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        fragmentTransaction.replace(R.id.fragment_content, new ListViewFragment());
+//        fragmentTransaction.commit();
+
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-
                 selectDrawerItem(menuItem);
                 return true;
             }
@@ -66,8 +84,13 @@ public class MainActivity extends AppCompatActivity implements ListViewFragment.
         Fragment fragment = null;
 
         int id = menuItem.getItemId();
-        switch (id){
-
+        switch (id) {
+            case R.id.nav_thumbnail_view:
+                fragment = new ThumbnailViewFragment();
+                break;
+            case R.id.nav_map_view:
+                fragment = new MapViewFragment();
+                break;
             default:
                 fragment = new ListViewFragment();
         }
@@ -85,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements ListViewFragment.
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(mToggle.onOptionsItemSelected(item))
+        if (mToggle.onOptionsItemSelected(item))
             return true;
         return super.onOptionsItemSelected(item);
     }
