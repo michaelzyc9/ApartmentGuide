@@ -1,0 +1,85 @@
+[
+  {
+    "name": "Avalon Silicon Valley",
+    "address": "1257 Lakeside Drive, Sunnyvale, CA 94085",
+    "website": "https://www.avaloncommunities.com/california/sunnyvale-apartments/avalon-silicon-valley",
+    "images": [
+      "https://github.com/michaelzyc9/ApartmentGuide/blob/master/Images/avalon-silicone-valley/exterior.jpg",
+      "https://github.com/michaelzyc9/ApartmentGuide/blob/master/Images/avalon-silicone-valley/common-area.jpg",
+      "https://github.com/michaelzyc9/ApartmentGuide/blob/master/Images/avalon-silicone-valley/interior.jpg"
+    ],
+    "floor_plans": [
+      {
+        "bed": "1",
+        "bath": "1",
+        "price_from": "2890"
+      },
+      {
+        "bed": "2",
+        "bath": "2",
+        "price_from": "3401"
+      },
+      {
+        "bed": "3",
+        "bath": "2",
+        "price_from": "4760"
+      },
+      {
+        "bed": "3",
+        "bath": "3",
+        "price_from": "4495"
+      }
+    ]
+  },
+
+  {
+    "name": "CAPITOL 650",
+    "address": "650 E CAPITOL AVENUE, Milpitas, CA 95035",
+    "website": "https://capitol650.com/",
+    "images": [
+      "https://github.com/michaelzyc9/ApartmentGuide/blob/master/Images/capitol-650/exterior.jpg",
+      "https://github.com/michaelzyc9/ApartmentGuide/blob/master/Images/capitol-650/common-area.jpg",
+      "https://github.com/michaelzyc9/ApartmentGuide/blob/master/Images/capitol-650/interior.jpg"
+    ],
+    "floor_plans": [
+      {
+        "bed": "1",
+        "bath": "1",
+        "price_from": "2670"
+      },
+      {
+        "bed": "2",
+        "bath": "2",
+        "price_from": "3490"
+      }
+    ]
+  },
+
+  {
+    "name": "RIVER VIEW",
+    "address": "250 Brandon Street, San Jose, CA 95134",
+    "website": "https://www.irvinecompanyapartments.com/locations/northern-california/san-jose/river-view.html",
+    "images": [
+      "https://github.com/michaelzyc9/ApartmentGuide/blob/master/Images/river-view/exterior.jpg",
+      "https://github.com/michaelzyc9/ApartmentGuide/blob/master/Images/river-view/common-area.jpg",
+      "https://github.com/michaelzyc9/ApartmentGuide/blob/master/Images/river-view/interior.jpg"
+    ],
+    "floor_plans": [
+      {
+        "bed": "0",
+        "bath": "1",
+        "price_from": "2535"
+      },
+      {
+        "bed": "1",
+        "bath": "1",
+        "price_from": "2825"
+      },
+      {
+        "bed": "2",
+        "bath": "2",
+        "price_from": "3725"
+      }
+    ]
+  }
+]
