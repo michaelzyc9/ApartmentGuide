@@ -1,9 +1,7 @@
 package com.example.apartmentguide;
 
-import android.content.res.Configuration;
 import android.net.Uri;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -16,7 +14,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
+
+import com.example.apartmentguide.fragments.ListViewFragment;
+import com.example.apartmentguide.fragments.MapViewFragment;
+import com.example.apartmentguide.fragments.ThumbnailViewFragment;
 
 public class MainActivity extends AppCompatActivity implements ListViewFragment.OnFragmentInteractionListener,
         ThumbnailViewFragment.OnFragmentInteractionListener, MapViewFragment.OnFragmentInteractionListener {

@@ -4,7 +4,7 @@
     android:id="@+id/thumbnail_view_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ThumbnailViewFragment">
+    tools:context=".fragments.ThumbnailViewFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
