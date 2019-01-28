@@ -9,6 +9,6 @@ import retrofit2.Callback;
 import retrofit2.http.GET;
 
 public interface GetApartmentsInterface {
-    @GET("/michaelzyc9/ApartmentGuide/master/app/src/main/apartments.json")
+    @GET("/michaelzyc9/ApartmentGuide/master/apartments.json")
     Call<List<ApartmentBuilding>> getApartments();
 }
