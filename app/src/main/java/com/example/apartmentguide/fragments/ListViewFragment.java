@@ -3,12 +3,23 @@ package com.example.apartmentguide.fragments;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.apartmentguide.R;
+import com.example.apartmentguide.models.ApartmentBuilding;
+import com.example.apartmentguide.utils.GetApartmentsInterface;
+import com.example.apartmentguide.utils.RetrofitClientInstance;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -106,5 +117,30 @@ public class ListViewFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        GetApartmentsInterface service = RetrofitClientInstance.getRetrofitInstance()
+                .create(GetApartmentsInterface.class);
+        Call<List<ApartmentBuilding>> call = service.getApartments();
+        call.enqueue(new Callback<List<ApartmentBuilding>>() {
+            @Override
+            public void onResponse(Call<List<ApartmentBuilding>> call, Response<List<ApartmentBuilding>> response) {
+                if (response == null)
+                    return;
+                for (ApartmentBuilding ap : response.body()) {
+                    Log.e("Apartment: ", ap.getName());
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<ApartmentBuilding>> call, Throwable t) {
+                Log.e("GetApartments failed: ", t.getMessage());
+            }
+        });
     }
 }

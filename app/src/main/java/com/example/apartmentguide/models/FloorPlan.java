@@ -7,21 +7,21 @@ public class FloorPlan implements Parcelable {
 
     private String bed;
     private String bath;
-    private String priceFrom;
+    private String price_from;
 
     public FloorPlan() {
     }
 
-    public FloorPlan(String bed, String bath, String priceFrom) {
+    public FloorPlan(String bed, String bath, String price_from) {
         this.bed = bed;
         this.bath = bath;
-        this.priceFrom = priceFrom;
+        this.price_from = price_from;
     }
 
     protected FloorPlan(Parcel in) {
         bed = in.readString();
         bath = in.readString();
-        priceFrom = in.readString();
+        price_from = in.readString();
     }
 
     public static final Creator<FloorPlan> CREATOR = new Creator<FloorPlan>() {
@@ -52,12 +52,12 @@ public class FloorPlan implements Parcelable {
         this.bath = bath;
     }
 
-    public String getPriceFrom() {
-        return priceFrom;
+    public String getPrice_from() {
+        return price_from;
     }
 
-    public void setPriceFrom(String priceFrom) {
-        this.priceFrom = priceFrom;
+    public void setPrice_from(String price_from) {
+        this.price_from = price_from;
     }
 
 
@@ -71,7 +71,7 @@ public class FloorPlan implements Parcelable {
         applyDefaultValues();
         dest.writeString(bed);
         dest.writeString(bath);
-        dest.writeString(priceFrom);
+        dest.writeString(price_from);
     }
 
     private void applyDefaultValues() {
@@ -79,8 +79,8 @@ public class FloorPlan implements Parcelable {
             bed = "";
         if (bath == null)
             bath = "";
-        if (priceFrom == null)
-            priceFrom = "";
+        if (price_from == null)
+            price_from = "";
     }
 }
 

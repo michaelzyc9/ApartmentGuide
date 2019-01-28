@@ -9,17 +9,17 @@ public class ApartmentBuilding implements Parcelable {
     private String address;
     private String website;
     private String[] images;
-    private FloorPlan[] floorPlans;
+    private FloorPlan[] floor_plans;
 
     public ApartmentBuilding() {
     }
 
-    public ApartmentBuilding(String name, String address, String website, String[] images, FloorPlan[] floorPlans) {
+    public ApartmentBuilding(String name, String address, String website, String[] images, FloorPlan[] floor_plans) {
         this.name = name;
         this.address = address;
         this.website = website;
         this.images = images;
-        this.floorPlans = floorPlans;
+        this.floor_plans = floor_plans;
     }
 
     protected ApartmentBuilding(Parcel in) {
@@ -27,7 +27,7 @@ public class ApartmentBuilding implements Parcelable {
         address = in.readString();
         website = in.readString();
         images = in.createStringArray();
-        floorPlans = in.createTypedArray(FloorPlan.CREATOR);
+        floor_plans = in.createTypedArray(FloorPlan.CREATOR);
     }
 
     public static final Creator<ApartmentBuilding> CREATOR = new Creator<ApartmentBuilding>() {
@@ -74,12 +74,12 @@ public class ApartmentBuilding implements Parcelable {
         this.images = images;
     }
 
-    public FloorPlan[] getFloorPlans() {
-        return floorPlans;
+    public FloorPlan[] getFloor_plans() {
+        return floor_plans;
     }
 
-    public void setFloorPlans(FloorPlan[] floorPlans) {
-        this.floorPlans = floorPlans;
+    public void setFloor_plans(FloorPlan[] floor_plans) {
+        this.floor_plans = floor_plans;
     }
 
     @Override
@@ -94,7 +94,7 @@ public class ApartmentBuilding implements Parcelable {
         dest.writeString(address);
         dest.writeString(website);
         dest.writeStringArray(images);
-        dest.writeTypedArray(floorPlans, flags);
+        dest.writeTypedArray(floor_plans, flags);
     }
 
     private void applyDefaultValues() {
@@ -106,7 +106,7 @@ public class ApartmentBuilding implements Parcelable {
             website = "";
         if (images == null)
             images = new String[0];
-        if (floorPlans == null)
-            floorPlans = new FloorPlan[0];
+        if (floor_plans == null)
+            floor_plans = new FloorPlan[0];
     }
 }
