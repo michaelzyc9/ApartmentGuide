@@ -33,7 +33,7 @@ public class AptDetailActivity extends AppCompatActivity
     public static final String DESCRIPTION_EXTERIOR = "Exterior";
     public static final String DESCRIPTION_COMMON = "Amenity";
     public static final String DESCRIPTION_INTERIOR = "Unit";
-    
+
     private SliderLayout imageSlider;
 
     @Override
@@ -114,22 +114,14 @@ public class AptDetailActivity extends AppCompatActivity
     }
 
     @Override
-    public void onSliderClick(BaseSliderView slider) {
-        
-    }
+    public void onSliderClick(BaseSliderView slider) { }
 
     @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-    }
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) { }
 
     @Override
-    public void onPageSelected(int position) {
-
-    }
+    public void onPageSelected(int position) { }
 
     @Override
-    public void onPageScrollStateChanged(int state) {
-
-    }
+    public void onPageScrollStateChanged(int state) { }
 }
