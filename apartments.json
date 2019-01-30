@@ -134,6 +134,35 @@
     ]
   },
 
+
+  {
+    "name": "Avalon Towers on the Peninsula",
+    "address": "2400 West El Camino Real, Mountain View, CA 94040",
+    "website": "https://www.avaloncommunities.com/california/mountain-view-apartments/avalon-towers-on-the-peninsula",
+    "images": [
+      "https://raw.githubusercontent.com/michaelzyc9/ApartmentGuide/master/Images/avalon-towers-on-the-peninsula/exterior.jpg",
+      "https://raw.githubusercontent.com/michaelzyc9/ApartmentGuide/master/Images/avalon-towers-on-the-peninsula/common-area.jpg",
+      "https://raw.githubusercontent.com/michaelzyc9/ApartmentGuide/master/Images/avalon-towers-on-the-peninsula/interior.jpg"
+    ],
+    "floor_plans": [
+      {
+        "bed": "2",
+        "bath": "2",
+        "price_from": "5050"
+      },
+      {
+        "bed": "1",
+        "bath": "1",
+        "price_from": "3810"
+      },
+      {
+        "bed": "3",
+        "bath": "3",
+        "price_from": "7310"
+      }
+    ]
+  },
+
   {
     "name": "Venue Apartments",
     "address": "3737 Casa Verde St San Jose, CA 95134",
@@ -193,33 +222,6 @@
         "price_from": "3911"
       }
     ]
-  },
-
-  {
-    "name": "Avalon Towers on the Peninsula",
-    "address": "2400 West El Camino Real, Mountain View, CA 94040",
-    "website": "https://www.avaloncommunities.com/california/mountain-view-apartments/avalon-towers-on-the-peninsula",
-    "images": [
-      "https://raw.githubusercontent.com/michaelzyc9/ApartmentGuide/master/Images/avalon-towers-on-the-peninsula/exterior.jpg",
-      "https://raw.githubusercontent.com/michaelzyc9/ApartmentGuide/master/Images/avalon-towers-on-the-peninsula/common-area.jpg",
-      "https://raw.githubusercontent.com/michaelzyc9/ApartmentGuide/master/Images/avalon-towers-on-the-peninsula/interior.jpg"
-    ],
-    "floor_plans": [
-      {
-        "bed": "2",
-        "bath": "2",
-        "price_from": "5050"
-      },
-      {
-        "bed": "1",
-        "bath": "1",
-        "price_from": "3810"
-      },
-      {
-        "bed": "3",
-        "bath": "3",
-        "price_from": "7310"
-      }
-    ]
   }
+
 ]
