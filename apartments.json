@@ -33,7 +33,7 @@
   },
 
   {
-    "name": "CAPITOL 650",
+    "name": "Capitol 650",
     "address": "650 E CAPITOL AVENUE, Milpitas, CA 95035",
     "website": "https://capitol650.com/",
     "images": [
@@ -56,7 +56,7 @@
   },
 
   {
-    "name": "RIVER VIEW",
+    "name": "River View",
     "address": "250 Brandon Street, San Jose, CA 95134",
     "website": "https://www.irvinecompanyapartments.com/locations/northern-california/san-jose/river-view.html",
     "images": [
@@ -79,6 +79,29 @@
         "bed": "2",
         "bath": "2",
         "price_from": "3725"
+      }
+    ]
+  },
+
+  {
+    "name": "The Edge",
+    "address": "753 Montague Expy, Milpitas, CA 95035",
+    "website": "https://edgemilpitas.com/",
+    "images": [
+      "https://raw.githubusercontent.com/michaelzyc9/ApartmentGuide/master/Images/the-edge/exterior.jpg",
+      "https://raw.githubusercontent.com/michaelzyc9/ApartmentGuide/master/Images/the-edge/common-area.jpg",
+      "https://raw.githubusercontent.com/michaelzyc9/ApartmentGuide/master/Images/the-edge/interior.jpg"
+    ],
+    "floor_plans": [
+      {
+        "bed": "2",
+        "bath": "2",
+        "price_from": "3110"
+      },
+      {
+        "bed": "1",
+        "bath": "1",
+        "price_from": "2735"
       }
     ]
   }
