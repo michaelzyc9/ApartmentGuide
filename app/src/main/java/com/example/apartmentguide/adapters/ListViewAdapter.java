@@ -34,7 +34,7 @@ public class ListViewAdapter extends ArrayAdapter<ApartmentBuilding> {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        Picasso.get().load(getItem(position).getImages()[0]).into(holder.thumbnail);
+        Picasso.get().load(getItem(position).getImages()[0]).noFade().fit().into(holder.thumbnail);
         holder.name.setText(getItem(position).getName());
         holder.address.setText(getItem(position).getAddress());
         holder.fpInfo.setText("Floor plan section");

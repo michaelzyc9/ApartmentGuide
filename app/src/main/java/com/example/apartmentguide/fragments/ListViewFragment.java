@@ -126,7 +126,6 @@ public class ListViewFragment extends ListFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        //setListShown(false);
         mAdapter = new ListViewAdapter(getActivity(),0);
         GetApartmentsInterface service = RetrofitClientInstance.getRetrofitInstance()
                 .create(GetApartmentsInterface.class);
@@ -142,7 +141,6 @@ public class ListViewFragment extends ListFragment {
                 }
                 mAdapter.notifyDataSetChanged();
                 setListAdapter(mAdapter);
-                //setListShown(true);
             }
 
             @Override
