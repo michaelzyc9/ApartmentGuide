@@ -64,11 +64,7 @@ public class MainActivity extends AppCompatActivity implements ListViewFragment.
         mToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //default view - list view
-//        FragmentManager fragmentManager = getSupportFragmentManager();
-//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//        fragmentTransaction.replace(R.id.fragment_content, new ListViewFragment());
-//        fragmentTransaction.commit();
+        selectDrawerItem(null);
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -84,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements ListViewFragment.
 
         Fragment fragment = null;
 
-        int id = menuItem.getItemId();
+        int id = menuItem == null ? R.id.nav_list_view : menuItem.getItemId();
         switch (id) {
             case R.id.nav_thumbnail_view:
                 fragment = new ThumbnailViewFragment();
@@ -102,9 +98,10 @@ public class MainActivity extends AppCompatActivity implements ListViewFragment.
         fragmentTransaction.replace(R.id.fragment_content, fragment);
         fragmentTransaction.commit();
 
-        menuItem.setChecked(true);
-        mDrawerLayout.closeDrawers();
-
+        if (menuItem != null) {
+            menuItem.setChecked(true);
+            mDrawerLayout.closeDrawers();
+        }
     }
 
     @Override
