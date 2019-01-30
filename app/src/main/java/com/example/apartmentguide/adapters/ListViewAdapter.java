@@ -1,6 +1,10 @@
 package com.example.apartmentguide.adapters;
 
 import android.content.Context;
+import android.text.Spannable;
+import android.text.Spanned;
+import android.text.TextUtils;
+import android.text.style.ImageSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +16,12 @@ import com.example.apartmentguide.R;
 import com.example.apartmentguide.models.ApartmentBuilding;
 import com.example.apartmentguide.models.FloorPlan;
 import com.squareup.picasso.Picasso;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+import retrofit2.http.POST;
 
 public class ListViewAdapter extends ArrayAdapter<ApartmentBuilding> {
     public ListViewAdapter(Context context, int resource) {
@@ -39,7 +49,7 @@ public class ListViewAdapter extends ArrayAdapter<ApartmentBuilding> {
         Picasso.get().load(getItem(position).getImages()[0]).noFade().fit().into(holder.thumbnail);
         holder.name.setText(getItem(position).getName());
         holder.address.setText(getItem(position).getAddress());
-        holder.fpInfo.setText("Floor plan section");
+        setFloorplanTextView(holder.fpInfo, getItem(position).getFloorPlans());
         holder.priceFrom.setText(getPriceFrom(position));
 
         return convertView;
@@ -47,21 +57,39 @@ public class ListViewAdapter extends ArrayAdapter<ApartmentBuilding> {
 
     private String getPriceFrom(int position) {
         String priceFrom = null;
-        for(FloorPlan fp: getItem(position).getFloorPlans()){
-            if(priceFrom == null){
+        for (FloorPlan fp : getItem(position).getFloorPlans()) {
+            if (priceFrom == null) {
                 priceFrom = fp.getPriceFrom();
             } else {
-                if(Integer.valueOf(fp.getPriceFrom()) < Integer.valueOf(priceFrom))
+                if (Integer.valueOf(fp.getPriceFrom()) < Integer.valueOf(priceFrom))
                     priceFrom = fp.getPriceFrom();
             }
         }
         return priceFrom == null ? "N/A" : ("From $" + priceFrom);
     }
 
-    private TextView getFpInfoText(View convertView) {
-        TextView test = new TextView(getContext());
-        test.setText("TEST FP INFO SECTION");
-        return test;
+    private void setFloorplanTextView(TextView textView, FloorPlan[] floorPlans) {
+        Arrays.sort(floorPlans);
+        String text = "";
+        Map<String, Boolean> distinctBedNumber = new HashMap<>();
+        for (int i = 0; i < floorPlans.length; i++) {
+            String bedNumber = floorPlans[i].getBed();
+            if (i == 0) {
+                distinctBedNumber.put(bedNumber, true);
+                text = "  " + bedNumber;
+            } else if (!distinctBedNumber.containsKey(bedNumber)) {
+                text += ", " + floorPlans[i].getBed();
+                distinctBedNumber.put(bedNumber, true);
+            }
+        }
+//        int $index = text.indexOf("$");
+//        Spannable span = Spannable.Factory.getInstance().newSpannable(text);
+//        span.setSpan(new ImageSpan(getContext(), R.drawable.ic_bed),
+//                $index, $index + 1,
+//                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        textView.setText(span);
+        textView.setText(text);
+        textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_bed,0,0,0);
     }
 
     class ViewHolder {

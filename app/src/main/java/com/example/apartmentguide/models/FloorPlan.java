@@ -3,7 +3,7 @@ package com.example.apartmentguide.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class FloorPlan implements Parcelable {
+public class FloorPlan implements Parcelable, Comparable<FloorPlan> {
 
     private String bed;
     private String bath;
@@ -81,6 +81,15 @@ public class FloorPlan implements Parcelable {
             bath = "";
         if (price_from == null)
             price_from = "";
+    }
+
+    @Override
+    public int compareTo(FloorPlan o) {
+        if (Integer.valueOf(this.bed) > Integer.valueOf(o.bed))
+            return 1;
+        else if (Integer.valueOf(this.bed) == Integer.valueOf(o.bed))
+            return 0;
+        return -1;
     }
 }
 
