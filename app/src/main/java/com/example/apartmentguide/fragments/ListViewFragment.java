@@ -1,6 +1,7 @@
 package com.example.apartmentguide.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,8 +11,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.example.apartmentguide.R;
+import com.example.apartmentguide.activities.AptDetailActivity;
 import com.example.apartmentguide.adapters.ListViewAdapter;
 import com.example.apartmentguide.models.ApartmentBuilding;
 import com.example.apartmentguide.utils.GetApartmentsInterface;
@@ -126,7 +129,7 @@ public class ListViewFragment extends ListFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mAdapter = new ListViewAdapter(getActivity(),0);
+        mAdapter = new ListViewAdapter(getActivity(), 0);
         GetApartmentsInterface service = RetrofitClientInstance.getRetrofitInstance()
                 .create(GetApartmentsInterface.class);
         Call<List<ApartmentBuilding>> call = service.getApartments();
@@ -148,5 +151,13 @@ public class ListViewFragment extends ListFragment {
                 Log.e("GetApartments failed: ", t.getMessage());
             }
         });
+    }
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+        Intent intent = new Intent(getActivity(), AptDetailActivity.class);
+        intent.putExtra(AptDetailActivity.APT_DATA, mAdapter.getItem(position));
+        startActivity(intent);
     }
 }
