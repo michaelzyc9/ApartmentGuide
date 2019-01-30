@@ -52,7 +52,7 @@ public class FloorPlan implements Parcelable {
         this.bath = bath;
     }
 
-    public String getPrice_from() {
+    public String getPriceFrom() {
         return price_from;
     }
 

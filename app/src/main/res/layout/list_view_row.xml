@@ -32,12 +32,22 @@
 
     <TextView
         android:id="@+id/list_view_floorplans"
-        android:layout_width="match_parent"
+        android:layout_width="150dp"
         android:layout_height="30dp"
         android:layout_below="@+id/list_view_address"
         android:layout_toRightOf="@+id/list_view_thumbnail"
         android:gravity="bottom"
         android:text="FLOORPLAN" />
+
+    <TextView
+        android:id="@+id/list_view_price_from"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@+id/list_view_address"
+        android:layout_marginRight="5dp"
+        android:layout_toRightOf="@+id/list_view_floorplans"
+        android:gravity="bottom|right"
+        android:text="price_from" />
 
 
 </RelativeLayout>

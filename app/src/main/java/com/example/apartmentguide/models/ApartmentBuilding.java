@@ -74,7 +74,7 @@ public class ApartmentBuilding implements Parcelable {
         this.images = images;
     }
 
-    public FloorPlan[] getFloor_plans() {
+    public FloorPlan[] getFloorPlans() {
         return floor_plans;
     }
 
