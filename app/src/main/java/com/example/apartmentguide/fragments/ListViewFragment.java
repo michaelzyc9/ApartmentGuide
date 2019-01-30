@@ -5,12 +5,14 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.apartmentguide.R;
+import com.example.apartmentguide.adapters.ListViewAdapter;
 import com.example.apartmentguide.models.ApartmentBuilding;
 import com.example.apartmentguide.utils.GetApartmentsInterface;
 import com.example.apartmentguide.utils.RetrofitClientInstance;
@@ -30,7 +32,7 @@ import retrofit2.Response;
  * Use the {@link ListViewFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ListViewFragment extends Fragment {
+public class ListViewFragment extends ListFragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -41,6 +43,7 @@ public class ListViewFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+    private ListViewAdapter mAdapter;
 
     public ListViewFragment() {
         // Required empty public constructor
@@ -123,6 +126,8 @@ public class ListViewFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        //setListShown(false);
+        mAdapter = new ListViewAdapter(getActivity(),0);
         GetApartmentsInterface service = RetrofitClientInstance.getRetrofitInstance()
                 .create(GetApartmentsInterface.class);
         Call<List<ApartmentBuilding>> call = service.getApartments();
@@ -133,8 +138,11 @@ public class ListViewFragment extends Fragment {
                     return;
                 for (ApartmentBuilding ap : response.body()) {
                     Log.e("Apartment: ", ap.getName());
-
+                    mAdapter.add(ap);
                 }
+                mAdapter.notifyDataSetChanged();
+                setListAdapter(mAdapter);
+                //setListShown(true);
             }
 
             @Override
