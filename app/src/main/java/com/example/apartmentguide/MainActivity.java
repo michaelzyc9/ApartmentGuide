@@ -113,6 +113,12 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
     }
 
     @Override
+    public void onBackPressed() {
+        moveTaskToBack (true);
+        finish();
+    }
+
+    @Override
     public void onFragmentInteraction(Uri uri) {
 
     }
