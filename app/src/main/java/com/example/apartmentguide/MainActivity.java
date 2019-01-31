@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        fragmentTransaction.replace(R.id.fragment_content, fragment);
+        fragmentTransaction.replace(R.id.fragment_content, fragment).addToBackStack(null);
         fragmentTransaction.commit();
 
         if (menuItem != null) {
