@@ -5,8 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
@@ -16,8 +20,11 @@ import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.example.apartmentguide.R;
 import com.example.apartmentguide.models.ApartmentBuilding;
+import com.example.apartmentguide.models.FloorPlan;
 import com.squareup.picasso.Picasso;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class AptDetailActivity extends AppCompatActivity
@@ -58,14 +65,47 @@ public class AptDetailActivity extends AppCompatActivity
         name.setText(apt.getName());
         address.setText(apt.getAddress());
         website.setText(apt.getWebsite());
-        
+        setUpFloorPlanView(apt);
 
+    }
 
-        //TODO Floorplan section
+    private void setUpFloorPlanView(ApartmentBuilding apt) {
+        LinearLayout floorplanContent = findViewById(R.id.list_detail_floorplan_content);
+        Arrays.sort(apt.getFloorPlans());
 
+        for(int i = 0; i < apt.getFloorPlans().length; i ++){
+            FloorPlan fp = apt.getFloorPlans()[i];
+            RelativeLayout contentRow = new RelativeLayout(this);
+            RelativeLayout.LayoutParams relativeParams = new RelativeLayout.LayoutParams(
+                    RelativeLayout.LayoutParams.MATCH_PARENT,
+                    RelativeLayout.LayoutParams.WRAP_CONTENT
+            );
+            contentRow.setLayoutParams(relativeParams);
 
+            TextView floorplan = new TextView(this);
+            floorplan.setId(1);
+            TextView priceFrom = new TextView(this);
+            //priceFrom.setGravity(Gravity.RIGHT);
 
+            floorplan.setText(fp.getBed()+ " bed, " + fp.getBath() + " bath");
+            priceFrom.setText("From $" + fp.getPriceFrom());
 
+            contentRow.addView(floorplan);
+            contentRow.addView(priceFrom);
+
+            //formatting layouts
+            RelativeLayout.LayoutParams floorplanParams = new RelativeLayout.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            floorplan.setLayoutParams(floorplanParams);
+
+            RelativeLayout.LayoutParams priceParams = new RelativeLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            priceParams.addRule(RelativeLayout.RIGHT_OF,floorplan.getId());
+            priceFrom.setLayoutParams(priceParams);
+            priceFrom.setGravity(Gravity.RIGHT);
+
+            floorplanContent.addView(contentRow);
+        }
     }
 
     private void setUpImageSlider(ApartmentBuilding apt) {
