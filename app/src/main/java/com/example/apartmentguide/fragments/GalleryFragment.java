@@ -1,6 +1,7 @@
 package com.example.apartmentguide.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,6 +16,7 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import com.example.apartmentguide.R;
+import com.example.apartmentguide.activities.AptDetailActivity;
 import com.example.apartmentguide.adapters.GalleryAdapter;
 import com.example.apartmentguide.models.ApartmentBuilding;
 import com.example.apartmentguide.utils.GetApartmentsInterface;
@@ -113,6 +115,15 @@ public class GalleryFragment extends Fragment {
             @Override
             public void onFailure(Call<List<ApartmentBuilding>> call, Throwable t) {
                 Log.e("GetApartments failed: ", t.getMessage());
+            }
+        });
+
+        mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(), AptDetailActivity.class);
+                intent.putExtra(AptDetailActivity.APT_DATA, mAdapter.getItem(position));
+                startActivity(intent);
             }
         });
     }
