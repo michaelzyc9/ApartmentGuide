@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.text.method.LinkMovementMethod;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -31,7 +32,7 @@ public class AptDetailActivity extends AppCompatActivity
         implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
 
     public static final String APT_DATA = "extra_apt";
-    
+
     public static final String IMAGE_EXTERIOR = "exterior";
     public static final String IMAGE_COMMON = "common-area";
     public static final String IMAGE_INTERIOR = "interior";
@@ -59,6 +60,7 @@ public class AptDetailActivity extends AppCompatActivity
         TextView name = findViewById(R.id.list_detail_name);
         TextView address = findViewById(R.id.list_detail_address);
         TextView website = findViewById(R.id.list_detail_website);
+        website.setMovementMethod(LinkMovementMethod.getInstance());
 
         //Picasso.get().load(apt.getImages()[0]).noFade().fit().into(image);
         setUpImageSlider(apt);
@@ -73,7 +75,7 @@ public class AptDetailActivity extends AppCompatActivity
         LinearLayout floorplanContent = findViewById(R.id.list_detail_floorplan_content);
         Arrays.sort(apt.getFloorPlans());
 
-        for(int i = 0; i < apt.getFloorPlans().length; i ++){
+        for (int i = 0; i < apt.getFloorPlans().length; i++) {
             FloorPlan fp = apt.getFloorPlans()[i];
             RelativeLayout contentRow = new RelativeLayout(this);
             RelativeLayout.LayoutParams relativeParams = new RelativeLayout.LayoutParams(
@@ -87,7 +89,7 @@ public class AptDetailActivity extends AppCompatActivity
             TextView priceFrom = new TextView(this);
             //priceFrom.setGravity(Gravity.RIGHT);
 
-            floorplan.setText(fp.getBed()+ " bed, " + fp.getBath() + " bath");
+            floorplan.setText(fp.getBed() + " bed, " + fp.getBath() + " bath");
             priceFrom.setText("From $" + fp.getPriceFrom());
 
             contentRow.addView(floorplan);
@@ -100,7 +102,7 @@ public class AptDetailActivity extends AppCompatActivity
 
             RelativeLayout.LayoutParams priceParams = new RelativeLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            priceParams.addRule(RelativeLayout.RIGHT_OF,floorplan.getId());
+            priceParams.addRule(RelativeLayout.RIGHT_OF, floorplan.getId());
             priceFrom.setLayoutParams(priceParams);
             priceFrom.setGravity(Gravity.RIGHT);
 
@@ -111,17 +113,17 @@ public class AptDetailActivity extends AppCompatActivity
     private void setUpImageSlider(ApartmentBuilding apt) {
         imageSlider = findViewById(R.id.list_detail_image_slider);
 
-        HashMap<String,String> urlMap = new HashMap<String, String>();
-        urlMap.put(IMAGE_EXTERIOR,apt.getImages()[0]);
-        urlMap.put(IMAGE_COMMON,apt.getImages()[1]);
-        urlMap.put(IMAGE_INTERIOR,apt.getImages()[2]);
+        HashMap<String, String> urlMap = new HashMap<String, String>();
+        urlMap.put(IMAGE_EXTERIOR, apt.getImages()[0]);
+        urlMap.put(IMAGE_COMMON, apt.getImages()[1]);
+        urlMap.put(IMAGE_INTERIOR, apt.getImages()[2]);
 
-        HashMap<String,String> descriptionMap = new HashMap<String, String>();
-        descriptionMap.put(IMAGE_EXTERIOR,DESCRIPTION_EXTERIOR);
-        descriptionMap.put(IMAGE_COMMON,DESCRIPTION_COMMON);
-        descriptionMap.put(IMAGE_INTERIOR,DESCRIPTION_INTERIOR);
+        HashMap<String, String> descriptionMap = new HashMap<String, String>();
+        descriptionMap.put(IMAGE_EXTERIOR, DESCRIPTION_EXTERIOR);
+        descriptionMap.put(IMAGE_COMMON, DESCRIPTION_COMMON);
+        descriptionMap.put(IMAGE_INTERIOR, DESCRIPTION_INTERIOR);
 
-        for(String name : urlMap.keySet()){
+        for (String name : urlMap.keySet()) {
             TextSliderView textSliderView = new TextSliderView(this);
             // initialize a SliderLayout
             textSliderView
@@ -154,14 +156,18 @@ public class AptDetailActivity extends AppCompatActivity
     }
 
     @Override
-    public void onSliderClick(BaseSliderView slider) { }
+    public void onSliderClick(BaseSliderView slider) {
+    }
 
     @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) { }
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+    }
 
     @Override
-    public void onPageSelected(int position) { }
+    public void onPageSelected(int position) {
+    }
 
     @Override
-    public void onPageScrollStateChanged(int state) { }
+    public void onPageScrollStateChanged(int state) {
+    }
 }
