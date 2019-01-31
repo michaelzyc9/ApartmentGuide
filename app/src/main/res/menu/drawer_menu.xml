@@ -11,7 +11,7 @@
         <item
             android:id="@+id/nav_thumbnail_view"
             android:icon="@drawable/ic_view_module_black_24dp"
-            android:title="@string/thumbnail_view" />
+            android:title="@string/gallery_view" />
         <item
             android:id="@+id/nav_map_view"
             android:icon="@drawable/ic_location_on_black_24dp"

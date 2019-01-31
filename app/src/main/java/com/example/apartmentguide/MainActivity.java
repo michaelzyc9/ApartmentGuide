@@ -15,12 +15,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.example.apartmentguide.fragments.ListViewFragment;
-import com.example.apartmentguide.fragments.MapViewFragment;
-import com.example.apartmentguide.fragments.ThumbnailViewFragment;
+import com.example.apartmentguide.fragments.GalleryFragment;
+import com.example.apartmentguide.fragments.ListFragment;
+import com.example.apartmentguide.fragments.MapFragment;
 
-public class MainActivity extends AppCompatActivity implements ListViewFragment.OnFragmentInteractionListener,
-        ThumbnailViewFragment.OnFragmentInteractionListener, MapViewFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements ListFragment.OnFragmentInteractionListener,
+        GalleryFragment.OnFragmentInteractionListener, MapFragment.OnFragmentInteractionListener {
 
     private DrawerLayout mDrawerLayout;
     private FrameLayout fragmentContent;
@@ -83,13 +83,13 @@ public class MainActivity extends AppCompatActivity implements ListViewFragment.
         int id = menuItem == null ? R.id.nav_list_view : menuItem.getItemId();
         switch (id) {
             case R.id.nav_thumbnail_view:
-                fragment = new ThumbnailViewFragment();
+                fragment = new GalleryFragment();
                 break;
             case R.id.nav_map_view:
-                fragment = new MapViewFragment();
+                fragment = new MapFragment();
                 break;
             default:
-                fragment = new ListViewFragment();
+                fragment = new ListFragment();
         }
 
         FragmentManager fragmentManager = getSupportFragmentManager();

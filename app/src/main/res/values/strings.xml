@@ -2,7 +2,7 @@
     <string name="app_name">ApartmentGuide</string>
     <string name="drawer_opened">Choose View</string>
     <string name="drawer_closed">Apartment Guide</string>
-    <string name="list_view">List View</string>
-    <string name="thumbnail_view">Thumbnail View</string>
+    <string name="list_view">List</string>
+    <string name="gallery_view">Gallery</string>
     <string name="map">Map</string>
 </resources>
