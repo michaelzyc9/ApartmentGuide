@@ -64,7 +64,8 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
         mToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        selectDrawerItem(null);
+        if(savedInstanceState == null)
+            selectDrawerItem(null);
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
