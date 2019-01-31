@@ -8,6 +8,21 @@
         android:id="@+id/grid_image"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:adjustViewBounds="true"/>
+        android:layout_marginTop="5dp"
+        android:adjustViewBounds="true" />
+
+    <TextView
+        android:id="@+id/grid_price_from"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/grid_city_zip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="TextView" />
 
 </LinearLayout>
