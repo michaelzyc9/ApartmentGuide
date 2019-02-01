@@ -40,9 +40,6 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".activities.MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
-        <activity
             android:name=".activities.AptDetailActivity"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
