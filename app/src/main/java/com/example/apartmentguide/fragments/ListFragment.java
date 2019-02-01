@@ -14,7 +14,7 @@ import android.widget.ListView;
 
 import com.example.apartmentguide.R;
 import com.example.apartmentguide.activities.AptDetailActivity;
-import com.example.apartmentguide.adapters.ListViewAdapter;
+import com.example.apartmentguide.adapters.ListAdapter;
 import com.example.apartmentguide.models.ApartmentBuilding;
 import com.example.apartmentguide.utils.GetApartmentsInterface;
 import com.example.apartmentguide.utils.RetrofitClientInstance;
@@ -45,7 +45,7 @@ public class ListFragment extends android.support.v4.app.ListFragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
-    private ListViewAdapter mAdapter;
+    private ListAdapter mAdapter;
 
     public ListFragment() {
         // Required empty public constructor
@@ -128,7 +128,7 @@ public class ListFragment extends android.support.v4.app.ListFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mAdapter = new ListViewAdapter(getActivity(), 0);
+        mAdapter = new ListAdapter(getActivity(), 0);
         GetApartmentsInterface service = RetrofitClientInstance.getRetrofitInstance()
                 .create(GetApartmentsInterface.class);
         Call<List<ApartmentBuilding>> call = service.getApartments();

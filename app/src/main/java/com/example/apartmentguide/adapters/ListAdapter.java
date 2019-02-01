@@ -23,8 +23,8 @@ import java.util.Map;
 
 import retrofit2.http.POST;
 
-public class ListViewAdapter extends ArrayAdapter<ApartmentBuilding> {
-    public ListViewAdapter(Context context, int resource) {
+public class ListAdapter extends ArrayAdapter<ApartmentBuilding> {
+    public ListAdapter(Context context, int resource) {
         super(context, resource);
     }
 
