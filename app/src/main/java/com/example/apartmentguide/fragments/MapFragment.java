@@ -3,16 +3,35 @@ package com.example.apartmentguide.fragments;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.example.apartmentguide.R;
+import com.example.apartmentguide.models.ApartmentBuilding;
+import com.example.apartmentguide.utils.GetApartmentsInterface;
+import com.example.apartmentguide.utils.RetrofitClientInstance;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -34,8 +53,11 @@ public class MapFragment extends Fragment
     private String mParam1;
     private String mParam2;
 
+    private MapView mMapView;
     private GoogleMap mMap;
     private OnFragmentInteractionListener mListener;
+
+    private static final LatLng MOUNTAIN_VIEW = new LatLng(37.4, -122.1);
 
     public MapFragment() {
         // Required empty public constructor
@@ -66,6 +88,14 @@ public class MapFragment extends Fragment
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        mMapView = (MapView) view.findViewById(R.id.map);
+        mMapView.onCreate(savedInstanceState);
+        mMapView.onResume();
+        mMapView.getMapAsync(this);//when you already implement OnMapReadyCallback in your fragment
     }
 
     @Override
@@ -102,6 +132,38 @@ public class MapFragment extends Fragment
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+
+        CameraPosition cameraPosition = new CameraPosition.Builder()
+                .target(MOUNTAIN_VIEW)      // Sets the center of the map to Mountain View
+                .zoom(10)                   // Sets the zoom
+                .bearing(0)                // Sets the orientation of the camera to east
+                .tilt(0)                   // Sets the tilt of the camera to 30 degrees
+                .build();                   // Creates a CameraPosition from the builder
+        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        mMap.getUiSettings().setZoomControlsEnabled(true);
+
+        GetApartmentsInterface service = RetrofitClientInstance.getRetrofitInstance()
+                .create(GetApartmentsInterface.class);
+        Call<List<ApartmentBuilding>> call = service.getApartments();
+        call.enqueue(new Callback<List<ApartmentBuilding>>() {
+            @Override
+            public void onResponse(Call<List<ApartmentBuilding>> call, Response<List<ApartmentBuilding>> response) {
+                if (response == null)
+                    return;
+                for (ApartmentBuilding ap : response.body()) {
+                    Log.e("Apartment: ", ap.getName());
+                    MarkerOptions options = new MarkerOptions().position(MOUNTAIN_VIEW);
+                    options.title("From $" + ap.getPriceFrom());
+                    options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+                    mMap.addMarker(options);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<ApartmentBuilding>> call, Throwable t) {
+                Log.e("GetApartments failed: ", t.getMessage());
+            }
+        });
     }
 
     /**
