@@ -45,7 +45,7 @@ public class GalleryAdapter extends ArrayAdapter<ApartmentBuilding> {
     private String getCityAndZip(int position) {
         String address = getItem(position).getAddress();
         String[] addArr = address.split(",");
-        if(addArr.length < 2)
+        if (addArr.length < 2)
             return null;
         String cityAndZip = addArr[addArr.length - 2] + ", " + addArr[addArr.length - 1];
         return cityAndZip;
@@ -64,7 +64,7 @@ public class GalleryAdapter extends ArrayAdapter<ApartmentBuilding> {
         return priceFrom == null ? "N/A" : ("From $" + priceFrom);
     }
 
-    private class ViewHolder{
+    private class ViewHolder {
         ImageView image;
         TextView priceFrom;
         TextView cityZip;

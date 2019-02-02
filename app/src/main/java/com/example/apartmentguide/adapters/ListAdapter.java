@@ -1,10 +1,6 @@
 package com.example.apartmentguide.adapters;
 
 import android.content.Context;
-import android.text.Spannable;
-import android.text.Spanned;
-import android.text.TextUtils;
-import android.text.style.ImageSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,8 +16,6 @@ import com.squareup.picasso.Picasso;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-
-import retrofit2.http.POST;
 
 public class ListAdapter extends ArrayAdapter<ApartmentBuilding> {
     public ListAdapter(Context context, int resource) {
@@ -82,14 +76,8 @@ public class ListAdapter extends ArrayAdapter<ApartmentBuilding> {
                 distinctBedNumber.put(bedNumber, true);
             }
         }
-//        int $index = text.indexOf("$");
-//        Spannable span = Spannable.Factory.getInstance().newSpannable(text);
-//        span.setSpan(new ImageSpan(getContext(), R.drawable.ic_bed),
-//                $index, $index + 1,
-//                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-//        textView.setText(span);
         textView.setText(text);
-        textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_bed,0,0,0);
+        textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_bed, 0, 0, 0);
     }
 
     class ViewHolder {
