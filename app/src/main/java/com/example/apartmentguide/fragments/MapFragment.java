@@ -1,6 +1,7 @@
 package com.example.apartmentguide.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.apartmentguide.R;
+import com.example.apartmentguide.activities.AptDetailActivity;
 import com.example.apartmentguide.models.ApartmentBuilding;
 import com.example.apartmentguide.models.GoogleMapApiResponse;
 import com.example.apartmentguide.utils.GetApartmentsInterface;
@@ -25,6 +27,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
@@ -162,7 +165,7 @@ public class MapFragment extends Fragment
         });
     }
 
-    private void displayAptOnMap(List<ApartmentBuilding> aptData) {
+    private void displayAptOnMap(final List<ApartmentBuilding> aptData) {
         GoogleMapAPIs googleMapAPIs = GoogleMapApiClient.getClient(getContext()).create(GoogleMapAPIs.class);
 
         for (final ApartmentBuilding ap : aptData) {
@@ -176,19 +179,27 @@ public class MapFragment extends Fragment
                     Double lat = response.body().getResults().get(0).getGeometry().getLocation().getLat();
                     Double lng = response.body().getResults().get(0).getGeometry().getLocation().getLng();
 
-                    if(lat == null || lng == null){
-                        Log.e("MapFragment","lat or lng is NULL");
+                    if (lat == null || lng == null) {
+                        Log.e("MapFragment", "lat or lng is NULL");
                     } else {
                         MarkerOptions options = new MarkerOptions().position(new LatLng(lat, lng));
                         options.title("From $" + ap.getPriceFrom());
                         options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
-                        mMap.addMarker(options);
+                        mMap.addMarker(options).setTag(ap);
+                        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                            @Override
+                            public void onInfoWindowClick(Marker marker) {
+                                Intent intent = new Intent(getActivity(), AptDetailActivity.class);
+                                intent.putExtra(AptDetailActivity.APT_DATA, (ApartmentBuilding) marker.getTag());
+                                startActivity(intent);
+                            }
+                        });
                     }
                 }
 
                 @Override
                 public void onFailure(Call<GoogleMapApiResponse> call, Throwable t) {
-                    Log.e("MapFragment","API call failed");
+                    Log.e("MapFragment", "API call failed");
                 }
             });
         }
