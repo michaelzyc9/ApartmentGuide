@@ -6,4 +6,5 @@
     <string name="gallery_view">Gallery</string>
     <string name="map">Map</string>
     <string name="title_activity_maps">Map</string>
+    <string name="google_map_base_url">https://maps.googleapis.com/</string>
 </resources>

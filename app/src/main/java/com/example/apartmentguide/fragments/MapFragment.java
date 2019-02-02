@@ -10,24 +10,26 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 
 import com.example.apartmentguide.R;
 import com.example.apartmentguide.models.ApartmentBuilding;
+import com.example.apartmentguide.models.GoogleMapApiResponse;
 import com.example.apartmentguide.utils.GetApartmentsInterface;
+import com.example.apartmentguide.utils.GoogleMapAPIs;
+import com.example.apartmentguide.utils.GoogleMapApiClient;
 import com.example.apartmentguide.utils.RetrofitClientInstance;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -150,13 +152,7 @@ public class MapFragment extends Fragment
             public void onResponse(Call<List<ApartmentBuilding>> call, Response<List<ApartmentBuilding>> response) {
                 if (response == null)
                     return;
-                for (ApartmentBuilding ap : response.body()) {
-                    Log.e("Apartment: ", ap.getName());
-                    MarkerOptions options = new MarkerOptions().position(MOUNTAIN_VIEW);
-                    options.title("From $" + ap.getPriceFrom());
-                    options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
-                    mMap.addMarker(options);
-                }
+                displayAptOnMap(response.body());
             }
 
             @Override
@@ -164,6 +160,38 @@ public class MapFragment extends Fragment
                 Log.e("GetApartments failed: ", t.getMessage());
             }
         });
+    }
+
+    private void displayAptOnMap(List<ApartmentBuilding> aptData) {
+        GoogleMapAPIs googleMapAPIs = GoogleMapApiClient.getClient(getContext()).create(GoogleMapAPIs.class);
+
+        for (final ApartmentBuilding ap : aptData) {
+
+            Call<GoogleMapApiResponse> call = googleMapAPIs.getGeocodingResponse(ap.getAddress(),
+                    getContext().getString(R.string.google_maps_key));
+            call.enqueue(new Callback<GoogleMapApiResponse>() {
+                @Override
+                public void onResponse(Call<GoogleMapApiResponse> call, Response<GoogleMapApiResponse> response) {
+
+                    Double lat = response.body().getResults().get(0).getGeometry().getLocation().getLat();
+                    Double lng = response.body().getResults().get(0).getGeometry().getLocation().getLng();
+
+                    if(lat == null || lng == null){
+                        Log.e("MapFragment","lat or lng is NULL");
+                    } else {
+                        MarkerOptions options = new MarkerOptions().position(new LatLng(lat, lng));
+                        options.title("From $" + ap.getPriceFrom());
+                        options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+                        mMap.addMarker(options);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<GoogleMapApiResponse> call, Throwable t) {
+                    Log.e("MapFragment","API call failed");
+                }
+            });
+        }
     }
 
     /**
