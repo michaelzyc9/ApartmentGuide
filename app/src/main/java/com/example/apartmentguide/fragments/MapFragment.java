@@ -190,7 +190,7 @@ public class MapFragment extends Fragment
                             @Override
                             public void onInfoWindowClick(Marker marker) {
                                 Intent intent = new Intent(getActivity(), AptDetailActivity.class);
-                                intent.putExtra(AptDetailActivity.APT_DATA, (ApartmentBuilding) marker.getTag());
+                                intent.putExtra(getContext().getString(R.string.apt_data_field), (ApartmentBuilding) marker.getTag());
                                 startActivity(intent);
                             }
                         });

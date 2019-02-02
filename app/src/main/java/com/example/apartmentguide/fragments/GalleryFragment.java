@@ -122,7 +122,7 @@ public class GalleryFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), AptDetailActivity.class);
-                intent.putExtra(AptDetailActivity.APT_DATA, mAdapter.getItem(position));
+                intent.putExtra(getContext().getString(R.string.apt_data_field), mAdapter.getItem(position));
                 startActivity(intent);
             }
         });

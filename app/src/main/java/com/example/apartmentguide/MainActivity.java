@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -59,12 +60,11 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
         };
         mToggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.white));
 
-
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        if(savedInstanceState == null)
+        if (savedInstanceState == null)
             selectDrawerItem(null);
 
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -114,12 +114,11 @@ public class MainActivity extends AppCompatActivity implements ListFragment.OnFr
 
     @Override
     public void onBackPressed() {
-        moveTaskToBack (true);
+        moveTaskToBack(true);
         finish();
     }
 
     @Override
     public void onFragmentInteraction(Uri uri) {
-
     }
 }

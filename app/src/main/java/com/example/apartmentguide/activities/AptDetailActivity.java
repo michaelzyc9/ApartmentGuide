@@ -3,15 +3,12 @@ package com.example.apartmentguide.activities;
 import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.text.method.LinkMovementMethod;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -23,25 +20,13 @@ import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.example.apartmentguide.R;
 import com.example.apartmentguide.models.ApartmentBuilding;
 import com.example.apartmentguide.models.FloorPlan;
-import com.squareup.picasso.Picasso;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Random;
 
 public class AptDetailActivity extends AppCompatActivity
         implements BaseSliderView.OnSliderClickListener, ViewPagerEx.OnPageChangeListener {
-
-    public static final String APT_DATA = "extra_apt";
-
-    public static final String IMAGE_EXTERIOR = "exterior";
-    public static final String IMAGE_COMMON = "common-area";
-    public static final String IMAGE_INTERIOR = "interior";
-
-    //Image descriptions for sliding image sections
-    public static final String DESCRIPTION_EXTERIOR = "Exterior";
-    public static final String DESCRIPTION_COMMON = "Amenity";
-    public static final String DESCRIPTION_INTERIOR = "Unit";
 
     private SliderLayout imageSlider;
 
@@ -64,15 +49,13 @@ public class AptDetailActivity extends AppCompatActivity
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
 
-        ApartmentBuilding apt = getIntent().getExtras().getParcelable(APT_DATA);
+        ApartmentBuilding apt = getIntent().getExtras().getParcelable(getString(R.string.apt_data_field));
 
-        //ImageView image = findViewById(R.id.list_detail_image);
         TextView name = findViewById(R.id.list_detail_name);
         TextView address = findViewById(R.id.list_detail_address);
         TextView website = findViewById(R.id.list_detail_website);
         website.setMovementMethod(LinkMovementMethod.getInstance());
 
-        //Picasso.get().load(apt.getImages()[0]).noFade().fit().into(image);
         setUpImageSlider(apt);
         name.setText(apt.getName());
         address.setText(apt.getAddress());
@@ -95,9 +78,8 @@ public class AptDetailActivity extends AppCompatActivity
             contentRow.setLayoutParams(relativeParams);
 
             TextView floorplan = new TextView(this);
-            floorplan.setId(1);
+            floorplan.setId((new Random().nextInt(Integer.MAX_VALUE)) + 1);
             TextView priceFrom = new TextView(this);
-            //priceFrom.setGravity(Gravity.RIGHT);
 
             floorplan.setText(fp.getBed() + " bed, " + fp.getBath() + " bath");
             priceFrom.setText("From $" + fp.getPriceFrom());
@@ -124,28 +106,25 @@ public class AptDetailActivity extends AppCompatActivity
         imageSlider = findViewById(R.id.list_detail_image_slider);
 
         HashMap<String, String> urlMap = new HashMap<String, String>();
-        urlMap.put(IMAGE_EXTERIOR, apt.getImages()[0]);
-        urlMap.put(IMAGE_COMMON, apt.getImages()[1]);
-        urlMap.put(IMAGE_INTERIOR, apt.getImages()[2]);
+        urlMap.put(getString(R.string.image_exterior_filename), apt.getImages()[0]);
+        urlMap.put(getString(R.string.image_common_area_filename), apt.getImages()[1]);
+        urlMap.put(getString(R.string.image_interior_filename), apt.getImages()[2]);
 
         HashMap<String, String> descriptionMap = new HashMap<String, String>();
-        descriptionMap.put(IMAGE_EXTERIOR, DESCRIPTION_EXTERIOR);
-        descriptionMap.put(IMAGE_COMMON, DESCRIPTION_COMMON);
-        descriptionMap.put(IMAGE_INTERIOR, DESCRIPTION_INTERIOR);
+        descriptionMap.put(getString(R.string.image_exterior_filename),
+                getString(R.string.image_exterior_description));
+        descriptionMap.put(getString(R.string.image_common_area_filename),
+                getString(R.string.image_common_area_description));
+        descriptionMap.put(getString(R.string.image_interior_filename),
+                getString(R.string.image_interior_description));
 
         for (String name : urlMap.keySet()) {
             TextSliderView textSliderView = new TextSliderView(this);
-            // initialize a SliderLayout
             textSliderView
                     .description(descriptionMap.get(name))
                     .image(urlMap.get(name))
                     .setScaleType(BaseSliderView.ScaleType.Fit)
                     .setOnSliderClickListener(this);
-
-            //add your extra information
-//            textSliderView.bundle(new Bundle());
-//            textSliderView.getBundle()
-//                    .putString("extra",name);
 
             imageSlider.addSlider(textSliderView);
         }
@@ -154,15 +133,7 @@ public class AptDetailActivity extends AppCompatActivity
         imageSlider.setCustomAnimation(new DescriptionAnimation());
         imageSlider.setDuration(4000);
         imageSlider.addOnPageChangeListener(this);
-//        ListView l = (ListView)findViewById(R.id.transformers);
-//        l.setAdapter(new TransformerAdapter(this));
-//        l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                imageSlider.setPresetTransformer(((TextView) view).getText().toString());
-//                Toast.makeText(MainActivity.this, ((TextView) view).getText().toString(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
+
     }
 
     @Override
@@ -174,7 +145,6 @@ public class AptDetailActivity extends AppCompatActivity
         }
         return super.onOptionsItemSelected(item);
     }
-
 
     @Override
     public void onSliderClick(BaseSliderView slider) {

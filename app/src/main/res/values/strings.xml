@@ -1,10 +1,27 @@
 <resources>
+    <!--MainActivity section-->
     <string name="app_name">ApartmentGuide</string>
     <string name="drawer_opened">Choose View</string>
     <string name="drawer_closed">Apartment Guide</string>
     <string name="list_view">List</string>
     <string name="gallery_view">Gallery</string>
     <string name="map">Map</string>
-    <string name="title_activity_maps">Map</string>
+    <!--AptDetailActivity section-->
+    <string name="apt_data_field">extra_apt</string>
+    <string name="image_exterior_filename">exterior</string>
+    <string name="image_exterior_description">Exterior</string>
+    <string name="image_common_area_filename">common-area</string>
+    <string name="image_common_area_description">Amenity</string>
+    <string name="image_interior_filename">interior</string>
+    <string name="image_interior_description">Interior</string>
+
+
+
+
+
+
+
+
+    <!--MapFragment section-->
     <string name="google_map_base_url">https://maps.googleapis.com/</string>
 </resources>

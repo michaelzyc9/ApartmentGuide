@@ -156,7 +156,7 @@ public class ListFragment extends android.support.v4.app.ListFragment {
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
         Intent intent = new Intent(getActivity(), AptDetailActivity.class);
-        intent.putExtra(AptDetailActivity.APT_DATA, mAdapter.getItem(position));
+        intent.putExtra(getContext().getString(R.string.apt_data_field), mAdapter.getItem(position));
         startActivity(intent);
     }
 }
