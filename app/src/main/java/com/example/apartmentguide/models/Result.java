@@ -8,9 +8,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class Result {
 
-    @SerializedName("address_components")
-    @Expose
-    private List<AddressComponent> addressComponents = new ArrayList<>();
     @SerializedName("formatted_address")
     @Expose
     private String formattedAddress;
@@ -23,14 +20,6 @@ public class Result {
     @SerializedName("types")
     @Expose
     private List<String> types = new ArrayList<>();
-
-    public List<AddressComponent> getAddressComponents() {
-        return addressComponents;
-    }
-
-    public void setAddressComponents(List<AddressComponent> addressComponents) {
-        this.addressComponents = addressComponents;
-    }
 
     public String getFormattedAddress() {
         return formattedAddress;
