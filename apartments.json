@@ -31,7 +31,6 @@
       }
     ]
   },
-
   {
     "name": "Capitol 650",
     "address": "650 E Capitol Avenue, Milpitas, CA 95035",
@@ -54,7 +53,6 @@
       }
     ]
   },
-
   {
     "name": "River View",
     "address": "250 Brandon Street, San Jose, CA 95134",
@@ -82,7 +80,6 @@
       }
     ]
   },
-
   {
     "name": "The Edge",
     "address": "753 Montague Expy, Milpitas, CA 95035",
@@ -105,7 +102,6 @@
       }
     ]
   },
-
   {
     "name": "121 Tasman",
     "address": "121 E Tasman Drive, San Jose, CA 95134",
@@ -133,8 +129,6 @@
       }
     ]
   },
-
-
   {
     "name": "Avalon Towers on the Peninsula",
     "address": "2400 West El Camino Real, Mountain View, CA 94040",
@@ -162,7 +156,6 @@
       }
     ]
   },
-
   {
     "name": "Venue Apartments",
     "address": "3737 Casa Verde St, San Jose, CA 95134",
@@ -190,7 +183,6 @@
       }
     ]
   },
-
   {
     "name": "Epic",
     "address": "600 Epic Way, San Jose, CA 95134",
@@ -222,6 +214,54 @@
         "price_from": "3911"
       }
     ]
+  },
+  {
+    "name": "Verve",
+    "address": "1984 West El Camino Real, Mountain View, CA 94040",
+    "website": "https://www.udr.com/san-francisco-bay-area-apartments/mountain-view/verve/",
+    "images": [
+      "https://raw.githubusercontent.com/michaelzyc9/ApartmentGuide/master/Images/verve/exterior.jpg",
+      "https://raw.githubusercontent.com/michaelzyc9/ApartmentGuide/master/Images/verve/common-area.jpg",
+      "https://raw.githubusercontent.com/michaelzyc9/ApartmentGuide/master/Images/verve/interior.jpg"
+    ],
+    "floor_plans": [
+      {
+        "bed": "2",
+        "bath": "2",
+        "price_from": "4844"
+      },
+      {
+        "bed": "1",
+        "bath": "1",
+        "price_from": "4013"
+      }
+    ]
+  },
+  {
+    "name": "Elan Mountain View",
+    "address": "1030 Castro Street, Mountain View, CA 94040",
+    "website": "https://elanmountainview.com/",
+    "images": [
+      "https://raw.githubusercontent.com/michaelzyc9/ApartmentGuide/master/Images/elan-mountain-view/exterior.jpg",
+      "https://raw.githubusercontent.com/michaelzyc9/ApartmentGuide/master/Images/elan-mountain-view/common-area.jpg",
+      "https://raw.githubusercontent.com/michaelzyc9/ApartmentGuide/master/Images/elan-mountain-view/interior.jpg"
+    ],
+    "floor_plans": [
+      {
+        "bed": "0",
+        "bath": "1",
+        "price_from": "3645"
+      },
+      {
+        "bed": "2",
+        "bath": "2",
+        "price_from": "5485"
+      },
+      {
+        "bed": "1",
+        "bath": "1",
+        "price_from": "4355"
+      }
+    ]
   }
-
 ]
