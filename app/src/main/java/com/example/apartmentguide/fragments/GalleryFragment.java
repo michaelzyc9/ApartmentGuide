@@ -62,7 +62,7 @@ public class GalleryFragment extends Fragment {
         call.enqueue(new Callback<List<ApartmentBuilding>>() {
             @Override
             public void onResponse(Call<List<ApartmentBuilding>> call, Response<List<ApartmentBuilding>> response) {
-                if (response == null)
+                if (response == null || response.body() == null || !isAdded())
                     return;
                 for (ApartmentBuilding ap : response.body()) {
                     Log.e("Apartment: ", ap.getName());

@@ -106,7 +106,7 @@ public class MapFragment extends Fragment
         call.enqueue(new Callback<List<ApartmentBuilding>>() {
             @Override
             public void onResponse(Call<List<ApartmentBuilding>> call, Response<List<ApartmentBuilding>> response) {
-                if (response == null)
+                if (response == null || response.body() == null || !isAdded())
                     return;
                 displayAptOnMap(response.body());
             }
@@ -129,8 +129,17 @@ public class MapFragment extends Fragment
                 @Override
                 public void onResponse(Call<GoogleMapApiResponse> call, Response<GoogleMapApiResponse> response) {
 
-                    Double lat = response.body().getResults().get(0).getGeometry().getLocation().getLat();
-                    Double lng = response.body().getResults().get(0).getGeometry().getLocation().getLng();
+                    if (response == null || response.body() == null || !isAdded())
+                        return;
+
+                    Double lat = null;
+                    Double lng = null;
+                    try {
+                        lat = response.body().getResults().get(0).getGeometry().getLocation().getLat();
+                        lng = response.body().getResults().get(0).getGeometry().getLocation().getLng();
+                    } catch (Exception e) {
+                        Log.e("ERROR getting latLng", e.getMessage());
+                    }
 
                     if (lat == null || lng == null) {
                         Log.e("MapFragment", "lat or lng is NULL");
