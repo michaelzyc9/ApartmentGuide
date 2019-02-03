@@ -100,7 +100,7 @@ public class MapFragment extends Fragment
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
         mMap.getUiSettings().setZoomControlsEnabled(true);
 
-        GetApartmentsInterface service = RetrofitClientInstance.getRetrofitInstance()
+        GetApartmentsInterface service = RetrofitClientInstance.getRetrofitInstance(getContext())
                 .create(GetApartmentsInterface.class);
         Call<List<ApartmentBuilding>> call = service.getApartments();
         call.enqueue(new Callback<List<ApartmentBuilding>>() {

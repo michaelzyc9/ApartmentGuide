@@ -1,17 +1,20 @@
 package com.example.apartmentguide.utils;
 
+import android.content.Context;
+
+import com.example.apartmentguide.R;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClientInstance {
 
     private static Retrofit retrofit;
-    private static final String BASE_URL = "https://raw.githubusercontent.com/";
 
-    public static Retrofit getRetrofitInstance(){
+    public static Retrofit getRetrofitInstance(Context context){
         if(retrofit == null){
             retrofit = new retrofit2.Retrofit.Builder()
-                    .baseUrl(BASE_URL)
+                    .baseUrl(context.getString(R.string.apt_data_base_url))
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }

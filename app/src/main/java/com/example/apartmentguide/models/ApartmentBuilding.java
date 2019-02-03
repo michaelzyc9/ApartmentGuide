@@ -1,6 +1,5 @@
 package com.example.apartmentguide.models;
 
-import android.content.Intent;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -111,11 +110,11 @@ public class ApartmentBuilding implements Parcelable {
             floor_plans = new FloorPlan[0];
     }
 
-    public String getPriceFrom(){
+    public String getPriceFrom() {
         int priceFrom = Integer.MAX_VALUE;
-        for(FloorPlan fp: floor_plans){
+        for (FloorPlan fp : floor_plans) {
             int fpPriceFrom = Integer.valueOf(fp.getPriceFrom());
-            if(fpPriceFrom < priceFrom)
+            if (fpPriceFrom < priceFrom)
                 priceFrom = fpPriceFrom;
         }
         return String.valueOf(priceFrom);

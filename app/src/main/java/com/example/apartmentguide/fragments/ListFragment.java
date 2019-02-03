@@ -69,7 +69,7 @@ public class ListFragment extends android.support.v4.app.ListFragment {
         super.onActivityCreated(savedInstanceState);
 
         mAdapter = new ListAdapter(getActivity(), 0);
-        GetApartmentsInterface service = RetrofitClientInstance.getRetrofitInstance()
+        GetApartmentsInterface service = RetrofitClientInstance.getRetrofitInstance(getContext())
                 .create(GetApartmentsInterface.class);
         Call<List<ApartmentBuilding>> call = service.getApartments();
         call.enqueue(new Callback<List<ApartmentBuilding>>() {

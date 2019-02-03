@@ -60,7 +60,6 @@ public class FloorPlan implements Parcelable, Comparable<FloorPlan> {
         this.price_from = price_from;
     }
 
-
     @Override
     public int describeContents() {
         return 0;

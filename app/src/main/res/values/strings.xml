@@ -14,14 +14,7 @@
     <string name="image_common_area_description">Amenity</string>
     <string name="image_interior_filename">interior</string>
     <string name="image_interior_description">Interior</string>
-
-
-
-
-
-
-
-
-    <!--MapFragment section-->
+    <!--API section-->
+    <string name="apt_data_base_url">https://raw.githubusercontent.com/</string>
     <string name="google_map_base_url">https://maps.googleapis.com/</string>
 </resources>

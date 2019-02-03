@@ -56,7 +56,7 @@ public class GalleryFragment extends Fragment {
         mAdapter = new GalleryAdapter(getActivity(), 0);
         mGridView.setAdapter(mAdapter);
 
-        GetApartmentsInterface service = RetrofitClientInstance.getRetrofitInstance()
+        GetApartmentsInterface service = RetrofitClientInstance.getRetrofitInstance(getContext())
                 .create(GetApartmentsInterface.class);
         Call<List<ApartmentBuilding>> call = service.getApartments();
         call.enqueue(new Callback<List<ApartmentBuilding>>() {
