@@ -263,5 +263,64 @@
         "price_from": "4355"
       }
     ]
+  },
+  {
+    "name": "251 Brandon",
+    "address": "251 Brandon Street, San Jose, CA 95134",
+    "website": "https://www.251brandon.com/",
+    "images": [
+      "https://raw.githubusercontent.com/michaelzyc9/ApartmentGuide/master/Images/251-brandon/exterior.jpg",
+      "https://raw.githubusercontent.com/michaelzyc9/ApartmentGuide/master/Images/251-brandon/common-area.jpg",
+      "https://raw.githubusercontent.com/michaelzyc9/ApartmentGuide/master/Images/251-brandon/interior.jpg"
+    ],
+    "floor_plans": [
+      {
+        "bed": "3",
+        "bath": "2",
+        "price_from": "4131"
+      },
+      {
+        "bed": "2",
+        "bath": "2",
+        "price_from": "3268"
+      },
+      {
+        "bed": "1",
+        "bath": "1",
+        "price_from": "2446"
+      }
+    ]
+  },
+  {
+    "name": "Domicilio",
+    "address": "431 El Camino Real, Santa Clara, CA 95050",
+    "website": "https://www.domicilioapts.com/",
+    "images": [
+      "https://raw.githubusercontent.com/michaelzyc9/ApartmentGuide/master/Images/domicilio/exterior.jpg",
+      "https://raw.githubusercontent.com/michaelzyc9/ApartmentGuide/master/Images/domicilio/common-area.jpg",
+      "https://raw.githubusercontent.com/michaelzyc9/ApartmentGuide/master/Images/domicilio/interior.jpg"
+    ],
+    "floor_plans": [
+      {
+        "bed": "0",
+        "bath": "1",
+        "price_from": "2600"
+      },
+      {
+        "bed": "2",
+        "bath": "2",
+        "price_from": "3410"
+      },
+      {
+        "bed": "1",
+        "bath": "1",
+        "price_from": "2800"
+      },
+      {
+        "bed": "3",
+        "bath": "2",
+        "price_from": "4250"
+      }
+    ]
   }
 ]
