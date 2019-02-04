@@ -90,13 +90,19 @@ public class ListFragment extends android.support.v4.app.ListFragment {
                 Log.e("GetApartments failed: ", t.getMessage());
             }
         });
+
+        ListView lv = (ListView) getActivity().findViewById(android.R.id.list);
+        View footerView = ((LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.footer_view, null, false);
+        lv.addFooterView(footerView);
     }
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        super.onListItemClick(l, v, position, id);
-        Intent intent = new Intent(getActivity(), AptDetailActivity.class);
-        intent.putExtra(getContext().getString(R.string.apt_data_field), mAdapter.getItem(position));
-        startActivity(intent);
+        if (position < mAdapter.getCount()) {
+            super.onListItemClick(l, v, position, id);
+            Intent intent = new Intent(getActivity(), AptDetailActivity.class);
+            intent.putExtra(getContext().getString(R.string.apt_data_field), mAdapter.getItem(position));
+            startActivity(intent);
+        }
     }
 }

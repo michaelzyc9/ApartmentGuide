@@ -30,9 +30,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -45,7 +43,7 @@ public class MapFragment extends Fragment
     private GoogleMap mMap;
     private OnFragmentInteractionListener mListener;
 
-    private static final LatLng MOUNTAIN_VIEW = new LatLng(37.4, -122.1);
+    private static final LatLng MAP_CENTER = new LatLng(37.38, -122);
 
     public MapFragment() {
     }
@@ -92,7 +90,7 @@ public class MapFragment extends Fragment
         mMap = googleMap;
 
         CameraPosition cameraPosition = new CameraPosition.Builder()
-                .target(MOUNTAIN_VIEW)
+                .target(MAP_CENTER)
                 .zoom(10)
                 .bearing(0)
                 .tilt(0)
