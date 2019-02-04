@@ -1,8 +1,8 @@
-package com.example.apartmentguide.utils;
+package com.michaelzhang.apartmentguide.utils;
 
 import android.content.Context;
 
-import com.example.apartmentguide.R;
+import com.michaelzhang.apartmentguide.R;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;

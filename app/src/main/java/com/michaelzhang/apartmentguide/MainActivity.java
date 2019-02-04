@@ -1,4 +1,4 @@
-package com.example.apartmentguide;
+package com.michaelzhang.apartmentguide;
 
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -15,9 +15,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.example.apartmentguide.fragments.GalleryFragment;
-import com.example.apartmentguide.fragments.ListFragment;
-import com.example.apartmentguide.fragments.MapFragment;
+import com.michaelzhang.apartmentguide.fragments.GalleryFragment;
+import com.michaelzhang.apartmentguide.fragments.ListFragment;
+import com.michaelzhang.apartmentguide.fragments.MapFragment;
 
 public class MainActivity extends AppCompatActivity implements ListFragment.OnFragmentInteractionListener,
         GalleryFragment.OnFragmentInteractionListener, MapFragment.OnFragmentInteractionListener {

@@ -1,4 +1,4 @@
-package com.example.apartmentguide.adapters;
+package com.michaelzhang.apartmentguide.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,9 +8,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.apartmentguide.R;
-import com.example.apartmentguide.models.ApartmentBuilding;
-import com.example.apartmentguide.models.FloorPlan;
+import com.michaelzhang.apartmentguide.R;
+import com.michaelzhang.apartmentguide.models.ApartmentBuilding;
+import com.michaelzhang.apartmentguide.models.FloorPlan;
 import com.squareup.picasso.Picasso;
 
 public class GalleryAdapter extends ArrayAdapter<ApartmentBuilding> {

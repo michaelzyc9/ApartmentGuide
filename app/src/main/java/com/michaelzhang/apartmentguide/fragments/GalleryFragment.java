@@ -1,4 +1,4 @@
-package com.example.apartmentguide.fragments;
+package com.michaelzhang.apartmentguide.fragments;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,16 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.Toast;
 
-import com.example.apartmentguide.R;
-import com.example.apartmentguide.activities.AptDetailActivity;
-import com.example.apartmentguide.adapters.GalleryAdapter;
-import com.example.apartmentguide.models.ApartmentBuilding;
-import com.example.apartmentguide.utils.GetApartmentsInterface;
-import com.example.apartmentguide.utils.RetrofitClientInstance;
+import com.michaelzhang.apartmentguide.R;
+import com.michaelzhang.apartmentguide.activities.AptDetailActivity;
+import com.michaelzhang.apartmentguide.adapters.GalleryAdapter;
+import com.michaelzhang.apartmentguide.models.ApartmentBuilding;
+import com.michaelzhang.apartmentguide.utils.GetApartmentsInterface;
+import com.michaelzhang.apartmentguide.utils.RetrofitClientInstance;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;

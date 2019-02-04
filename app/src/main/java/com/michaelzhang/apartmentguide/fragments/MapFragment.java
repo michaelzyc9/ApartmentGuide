@@ -1,4 +1,4 @@
-package com.example.apartmentguide.fragments;
+package com.michaelzhang.apartmentguide.fragments;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,14 +12,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.apartmentguide.R;
-import com.example.apartmentguide.activities.AptDetailActivity;
-import com.example.apartmentguide.models.ApartmentBuilding;
-import com.example.apartmentguide.models.GoogleMapApiResponse;
-import com.example.apartmentguide.utils.GetApartmentsInterface;
-import com.example.apartmentguide.utils.GoogleMapAPIs;
-import com.example.apartmentguide.utils.GoogleMapApiClient;
-import com.example.apartmentguide.utils.RetrofitClientInstance;
+import com.michaelzhang.apartmentguide.R;
+import com.michaelzhang.apartmentguide.activities.AptDetailActivity;
+import com.michaelzhang.apartmentguide.models.ApartmentBuilding;
+import com.michaelzhang.apartmentguide.models.GoogleMapApiResponse;
+import com.michaelzhang.apartmentguide.utils.GetApartmentsInterface;
+import com.michaelzhang.apartmentguide.utils.GoogleMapAPIs;
+import com.michaelzhang.apartmentguide.utils.GoogleMapApiClient;
+import com.michaelzhang.apartmentguide.utils.RetrofitClientInstance;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;

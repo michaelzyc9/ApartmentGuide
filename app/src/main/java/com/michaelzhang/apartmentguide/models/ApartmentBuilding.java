@@ -1,4 +1,4 @@
-package com.example.apartmentguide.models;
+package com.michaelzhang.apartmentguide.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;

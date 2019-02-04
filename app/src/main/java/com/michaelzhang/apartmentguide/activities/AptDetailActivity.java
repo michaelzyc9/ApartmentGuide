@@ -1,4 +1,4 @@
-package com.example.apartmentguide.activities;
+package com.michaelzhang.apartmentguide.activities;
 
 import android.graphics.PorterDuff;
 import android.support.v7.app.AppCompatActivity;
@@ -17,9 +17,9 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
-import com.example.apartmentguide.R;
-import com.example.apartmentguide.models.ApartmentBuilding;
-import com.example.apartmentguide.models.FloorPlan;
+import com.michaelzhang.apartmentguide.R;
+import com.michaelzhang.apartmentguide.models.ApartmentBuilding;
+import com.michaelzhang.apartmentguide.models.FloorPlan;
 
 import java.util.Arrays;
 import java.util.HashMap;

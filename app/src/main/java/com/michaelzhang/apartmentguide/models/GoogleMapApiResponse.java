@@ -1,5 +1,5 @@
 
-package com.example.apartmentguide.models;
+package com.michaelzhang.apartmentguide.models;
 
 import java.util.List;
 

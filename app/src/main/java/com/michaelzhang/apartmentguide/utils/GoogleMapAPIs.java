@@ -1,6 +1,6 @@
-package com.example.apartmentguide.utils;
+package com.michaelzhang.apartmentguide.utils;
 
-import com.example.apartmentguide.models.GoogleMapApiResponse;
+import com.michaelzhang.apartmentguide.models.GoogleMapApiResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

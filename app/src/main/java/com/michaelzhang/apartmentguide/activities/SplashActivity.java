@@ -1,11 +1,11 @@
-package com.example.apartmentguide.activities;
+package com.michaelzhang.apartmentguide.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.example.apartmentguide.MainActivity;
+import com.michaelzhang.apartmentguide.MainActivity;
 
 public class SplashActivity extends AppCompatActivity {
     @Override

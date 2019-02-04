@@ -1,4 +1,4 @@
-package com.example.apartmentguide;
+package com.michaelzhang.apartmentguide;
 
 import org.junit.Test;
 

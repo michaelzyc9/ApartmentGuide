@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.apartmentguide">
+    package="com.michaelzhang.apartmentguide">
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true"/>
@@ -40,11 +40,11 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".activities.AptDetailActivity"
-            android:parentActivityName=".MainActivity" />
-        <activity android:name=".MainActivity"/>
+            android:name="com.michaelzhang.apartmentguide.activities.AptDetailActivity"
+            android:parentActivityName="com.michaelzhang.apartmentguide.MainActivity" />
+        <activity android:name="com.michaelzhang.apartmentguide.MainActivity"/>
         <activity
-            android:name=".activities.SplashActivity"
+            android:name="com.michaelzhang.apartmentguide.activities.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
