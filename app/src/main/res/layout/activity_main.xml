@@ -37,14 +37,12 @@
             app:itemTextColor="@android:color/darker_gray"
             app:menu="@menu/drawer_menu" />
 
+        <FrameLayout
+            android:id="@+id/fragment_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar" />
+
     </android.support.v4.widget.DrawerLayout>
-
-    <FrameLayout
-        android:id="@+id/fragment_content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar">
-
-    </FrameLayout>
-
+    
 </RelativeLayout>
