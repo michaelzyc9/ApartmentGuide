@@ -1,7 +1,6 @@
 # Apartment Guide
 
-The app provides a guide for the rental market in Silicone Valley area. It shows information about selected apartment  
-buildings including floor plan pricing, locations and photos.
+The app provides a guide for the rental market in Silicone Valley area. It shows information about selected apartment buildings including floor plan pricing, locations and photos.
 
 This app is published to Google Play Store:  
 https://play.google.com/store/apps/details?id=com.michaelzhang.apartmentguide
@@ -12,7 +11,7 @@ Retrofit, Gson, Daimajia Slider
 API:  
 Google Geocoding API
 
-# Screenshots
+## Screenshots
 <p float="left">
 <img src="https://raw.githubusercontent.com/michaelzyc9/ApartmentGuide/master/screenshots/List%20view.png" width="250">
   &nbsp&nbsp&nbsp&nbsp
