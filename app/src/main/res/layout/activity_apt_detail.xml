@@ -15,7 +15,7 @@
         android:background="@android:color/holo_orange_dark"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Light"
-        app:title="Apartment Guide"
+        app:title="@string/drawer_closed"
         app:titleTextColor="@android:color/white" />
 
     <ScrollView
