@@ -9,7 +9,7 @@ import retrofit2.http.GET;
 
 public interface AgServiceAPI {
 
-    @GET("/ag-api/apartments")
+    @GET("/ag-api/apartments?size=100")
     Call<AgServiceResponse> getAll();
 
 }
