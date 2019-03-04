@@ -28,9 +28,7 @@ public class Apartment implements Parcelable {
     @SerializedName("floorPlans")
     @Expose
     private List<FloorPlan> floorPlans = null;
-    @SerializedName("_links")
-    @Expose
-    private Links links;
+
     public final static Parcelable.Creator<Apartment> CREATOR = new Creator<Apartment>() {
 
 
@@ -55,7 +53,6 @@ public class Apartment implements Parcelable {
         this.address = ((Address) in.readValue((Address.class.getClassLoader())));
         in.readList(this.images, (com.michaelzhang.apartmentguide.models.Image.class.getClassLoader()));
         in.readList(this.floorPlans, (com.michaelzhang.apartmentguide.models.FloorPlan.class.getClassLoader()));
-        this.links = ((Links) in.readValue((Links.class.getClassLoader())));
     }
 
     public Apartment() {
@@ -101,21 +98,12 @@ public class Apartment implements Parcelable {
         this.floorPlans = floorPlans;
     }
 
-    public Links getLinks() {
-        return links;
-    }
-
-    public void setLinks(Links links) {
-        this.links = links;
-    }
-
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(name);
         dest.writeValue(website);
         dest.writeValue(address);
         dest.writeList(images);
         dest.writeList(floorPlans);
-        dest.writeValue(links);
     }
 
     public int describeContents() {

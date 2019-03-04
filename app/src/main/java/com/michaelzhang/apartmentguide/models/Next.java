@@ -7,38 +7,34 @@ import android.os.Parcelable.Creator;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Self implements Parcelable
+public class Next implements Parcelable
 {
 
     @SerializedName("href")
     @Expose
     private String href;
-    @SerializedName("templated")
-    @Expose
-    private Boolean templated;
-    public final static Parcelable.Creator<Self> CREATOR = new Creator<Self>() {
+    public final static Parcelable.Creator<Next> CREATOR = new Creator<Next>() {
 
 
         @SuppressWarnings({
             "unchecked"
         })
-        public Self createFromParcel(Parcel in) {
-            return new Self(in);
+        public Next createFromParcel(Parcel in) {
+            return new Next(in);
         }
 
-        public Self[] newArray(int size) {
-            return (new Self[size]);
+        public Next[] newArray(int size) {
+            return (new Next[size]);
         }
 
     }
     ;
 
-    protected Self(Parcel in) {
+    protected Next(Parcel in) {
         this.href = ((String) in.readValue((String.class.getClassLoader())));
-        this.templated = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
     }
 
-    public Self() {
+    public Next() {
     }
 
     public String getHref() {
@@ -49,17 +45,8 @@ public class Self implements Parcelable
         this.href = href;
     }
 
-    public Boolean getTemplated() {
-        return templated;
-    }
-
-    public void setTemplated(Boolean templated) {
-        this.templated = templated;
-    }
-
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(href);
-        dest.writeValue(templated);
     }
 
     public int describeContents() {
