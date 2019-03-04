@@ -9,12 +9,11 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class GoogleMapApiClient {
+public class AgServiceClient {
 
     private static Retrofit mRetrofit;
 
-    public static Retrofit getClient(Context context) {
-
+    public static Retrofit getServiceClient(Context context){
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder()
@@ -23,7 +22,7 @@ public class GoogleMapApiClient {
 
         if (mRetrofit == null) {
             mRetrofit = new Retrofit.Builder()
-                    .baseUrl(context.getString(R.string.google_map_base_url))
+                    .baseUrl(context.getString(R.string.ag_service_base_url))
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(client)
                     .build();

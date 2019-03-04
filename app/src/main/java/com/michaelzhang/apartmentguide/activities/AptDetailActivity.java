@@ -18,10 +18,13 @@ import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.michaelzhang.apartmentguide.R;
-import com.michaelzhang.apartmentguide.models.ApartmentBuilding;
+import com.michaelzhang.apartmentguide.models.Apartment;
 import com.michaelzhang.apartmentguide.models.FloorPlan;
+import com.michaelzhang.apartmentguide.models.Image;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -49,7 +52,7 @@ public class AptDetailActivity extends AppCompatActivity
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
 
-        ApartmentBuilding apt = getIntent().getExtras().getParcelable(getString(R.string.apt_data_field));
+        Apartment apt = getIntent().getExtras().getParcelable(getString(R.string.apt_data_field));
 
         TextView name = findViewById(R.id.list_detail_name);
         TextView address = findViewById(R.id.list_detail_address);
@@ -58,18 +61,23 @@ public class AptDetailActivity extends AppCompatActivity
 
         setUpImageSlider(apt);
         name.setText(apt.getName());
-        address.setText(apt.getAddress());
+        address.setText(apt.getAddress().getFullAddress());
         website.setText(apt.getWebsite());
         setUpFloorPlanView(apt);
 
     }
 
-    private void setUpFloorPlanView(ApartmentBuilding apt) {
+    private void setUpFloorPlanView(Apartment apt) {
         LinearLayout floorplanContent = findViewById(R.id.list_detail_floorplan_content);
-        Arrays.sort(apt.getFloorPlans());
+        Collections.sort(apt.getFloorPlans(), new Comparator<FloorPlan>() {
+            @Override
+            public int compare(FloorPlan o1, FloorPlan o2) {
+                return o1.compareTo(o2);
+            }
+        });
 
-        for (int i = 0; i < apt.getFloorPlans().length; i++) {
-            FloorPlan fp = apt.getFloorPlans()[i];
+        for (int i = 0; i < apt.getFloorPlans().size(); i++) {
+            FloorPlan fp = apt.getFloorPlans().get(i);
             RelativeLayout contentRow = new RelativeLayout(this);
             RelativeLayout.LayoutParams relativeParams = new RelativeLayout.LayoutParams(
                     RelativeLayout.LayoutParams.MATCH_PARENT,
@@ -81,7 +89,20 @@ public class AptDetailActivity extends AppCompatActivity
             floorplan.setId((new Random().nextInt(Integer.MAX_VALUE)) + 1);
             TextView priceFrom = new TextView(this);
 
-            floorplan.setText(fp.getBed() + " bed, " + fp.getBath() + " bath");
+            String bed = "";
+            String bath = "";
+
+            if (fp.getBed() == Math.floor(fp.getBed())) {
+                bed = String.valueOf(fp.getBed().intValue());
+            } else {
+                bed = String.valueOf(fp.getBed());
+            }
+            if (fp.getBath() == Math.floor(fp.getBath())) {
+                bath = String.valueOf(fp.getBath().intValue());
+            } else {
+                bath = String.valueOf(fp.getBath());
+            }
+            floorplan.setText(bed + " bed, " + bath + " bath");
             priceFrom.setText("From $" + fp.getPriceFrom());
 
             contentRow.addView(floorplan);
@@ -102,27 +123,19 @@ public class AptDetailActivity extends AppCompatActivity
         }
     }
 
-    private void setUpImageSlider(ApartmentBuilding apt) {
+    private void setUpImageSlider(Apartment apt) {
         imageSlider = findViewById(R.id.list_detail_image_slider);
 
-        HashMap<String, String> urlMap = new HashMap<String, String>();
-        urlMap.put(getString(R.string.image_exterior_filename), apt.getImages()[0]);
-        urlMap.put(getString(R.string.image_common_area_filename), apt.getImages()[1]);
-        urlMap.put(getString(R.string.image_interior_filename), apt.getImages()[2]);
+        HashMap<String, String> imageMap = new HashMap<>();
+        for (Image img : apt.getImages()) {
+            imageMap.put(img.getLink(), img.getDescription());
+        }
 
-        HashMap<String, String> descriptionMap = new HashMap<String, String>();
-        descriptionMap.put(getString(R.string.image_exterior_filename),
-                getString(R.string.image_exterior_description));
-        descriptionMap.put(getString(R.string.image_common_area_filename),
-                getString(R.string.image_common_area_description));
-        descriptionMap.put(getString(R.string.image_interior_filename),
-                getString(R.string.image_interior_description));
-
-        for (String name : urlMap.keySet()) {
+        for (String link : imageMap.keySet()) {
             TextSliderView textSliderView = new TextSliderView(this);
             textSliderView
-                    .description(descriptionMap.get(name))
-                    .image(urlMap.get(name))
+                    .description(imageMap.get(link))
+                    .image(link)
                     .setScaleType(BaseSliderView.ScaleType.Fit)
                     .setOnSliderClickListener(this);
 

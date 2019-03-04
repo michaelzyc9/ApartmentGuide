@@ -14,12 +14,13 @@ import android.view.ViewGroup;
 
 import com.michaelzhang.apartmentguide.R;
 import com.michaelzhang.apartmentguide.activities.AptDetailActivity;
-import com.michaelzhang.apartmentguide.models.ApartmentBuilding;
-import com.michaelzhang.apartmentguide.models.GoogleMapApiResponse;
-import com.michaelzhang.apartmentguide.utils.GetApartmentsInterface;
-import com.michaelzhang.apartmentguide.utils.GoogleMapAPIs;
-import com.michaelzhang.apartmentguide.utils.GoogleMapApiClient;
-import com.michaelzhang.apartmentguide.utils.RetrofitClientInstance;
+import com.michaelzhang.apartmentguide.models.Apartment;
+import com.michaelzhang.apartmentguide.responses.AgServiceResponse;
+import com.michaelzhang.apartmentguide.responses.GoogleMapApiResponse;
+import com.michaelzhang.apartmentguide.utils.AgServiceAPI;
+import com.michaelzhang.apartmentguide.utils.GoogleMapAPI;
+import com.michaelzhang.apartmentguide.utils.GoogleMapClient;
+import com.michaelzhang.apartmentguide.utils.AgServiceClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -98,30 +99,30 @@ public class MapFragment extends Fragment
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
         mMap.getUiSettings().setZoomControlsEnabled(true);
 
-        GetApartmentsInterface service = RetrofitClientInstance.getRetrofitInstance(getContext())
-                .create(GetApartmentsInterface.class);
-        Call<List<ApartmentBuilding>> call = service.getApartments();
-        call.enqueue(new Callback<List<ApartmentBuilding>>() {
+        AgServiceAPI service = AgServiceClient.getServiceClient(getContext())
+                .create(AgServiceAPI.class);
+        Call<AgServiceResponse> call = service.getAll();
+        call.enqueue(new Callback<AgServiceResponse>() {
             @Override
-            public void onResponse(Call<List<ApartmentBuilding>> call, Response<List<ApartmentBuilding>> response) {
+            public void onResponse(Call<AgServiceResponse> call, Response<AgServiceResponse> response) {
                 if (response == null || response.body() == null || !isAdded())
                     return;
-                displayAptOnMap(response.body());
+                displayAptOnMap(response.body().getEmbedded().getApartments());
             }
 
             @Override
-            public void onFailure(Call<List<ApartmentBuilding>> call, Throwable t) {
+            public void onFailure(Call<AgServiceResponse> call, Throwable t) {
                 Log.e("GetApartments failed: ", t.getMessage());
             }
         });
     }
 
-    private void displayAptOnMap(final List<ApartmentBuilding> aptData) {
-        GoogleMapAPIs googleMapAPIs = GoogleMapApiClient.getClient(getContext()).create(GoogleMapAPIs.class);
+    private void displayAptOnMap(final List<Apartment> aptData) {
+        GoogleMapAPI googleMapAPI = GoogleMapClient.getClient(getContext()).create(GoogleMapAPI.class);
 
-        for (final ApartmentBuilding ap : aptData) {
+        for (final Apartment ap : aptData) {
 
-            Call<GoogleMapApiResponse> call = googleMapAPIs.getGeocodingResponse(ap.getAddress(),
+            Call<GoogleMapApiResponse> call = googleMapAPI.getGeocodingResponse(ap.getAddress().getFullAddress(),
                     getContext().getString(R.string.google_maps_key));
             call.enqueue(new Callback<GoogleMapApiResponse>() {
                 @Override
@@ -150,7 +151,7 @@ public class MapFragment extends Fragment
                             @Override
                             public void onInfoWindowClick(Marker marker) {
                                 Intent intent = new Intent(getActivity(), AptDetailActivity.class);
-                                intent.putExtra(getContext().getString(R.string.apt_data_field), (ApartmentBuilding) marker.getTag());
+                                intent.putExtra(getContext().getString(R.string.apt_data_field), (Apartment) marker.getTag());
                                 startActivity(intent);
                             }
                         });

@@ -8,14 +8,11 @@
     <string name="map">Map</string>
     <!--AptDetailActivity section-->
     <string name="apt_data_field">extra_apt</string>
-    <string name="image_exterior_filename">exterior</string>
     <string name="image_exterior_description">Exterior</string>
-    <string name="image_common_area_filename">common-area</string>
     <string name="image_common_area_description">Amenity</string>
-    <string name="image_interior_filename">interior</string>
     <string name="image_interior_description">Interior</string>
     <!--API section-->
-    <string name="apt_data_base_url">https://raw.githubusercontent.com/</string>
+    <string name="ag_service_base_url">http://3.88.103.11:80/</string>
     <string name="google_map_base_url">https://maps.googleapis.com/</string>
     <string name="email">michael.zyc9@gmail.com</string>
 </resources>

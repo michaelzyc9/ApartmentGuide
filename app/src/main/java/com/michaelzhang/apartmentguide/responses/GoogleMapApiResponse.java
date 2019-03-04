@@ -1,10 +1,11 @@
 
-package com.michaelzhang.apartmentguide.models;
+package com.michaelzhang.apartmentguide.responses;
 
 import java.util.List;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.michaelzhang.apartmentguide.models.Result;
 
 public class GoogleMapApiResponse {
 

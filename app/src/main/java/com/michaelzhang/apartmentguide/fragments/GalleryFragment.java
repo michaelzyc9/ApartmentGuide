@@ -17,9 +17,10 @@ import android.widget.GridView;
 import com.michaelzhang.apartmentguide.R;
 import com.michaelzhang.apartmentguide.activities.AptDetailActivity;
 import com.michaelzhang.apartmentguide.adapters.GalleryAdapter;
-import com.michaelzhang.apartmentguide.models.ApartmentBuilding;
-import com.michaelzhang.apartmentguide.utils.GetApartmentsInterface;
-import com.michaelzhang.apartmentguide.utils.RetrofitClientInstance;
+import com.michaelzhang.apartmentguide.models.Apartment;
+import com.michaelzhang.apartmentguide.responses.AgServiceResponse;
+import com.michaelzhang.apartmentguide.utils.AgServiceAPI;
+import com.michaelzhang.apartmentguide.utils.AgServiceClient;
 
 import java.util.List;
 
@@ -54,15 +55,16 @@ public class GalleryFragment extends Fragment {
         mAdapter = new GalleryAdapter(getActivity(), 0);
         mGridView.setAdapter(mAdapter);
 
-        GetApartmentsInterface service = RetrofitClientInstance.getRetrofitInstance(getContext())
-                .create(GetApartmentsInterface.class);
-        Call<List<ApartmentBuilding>> call = service.getApartments();
-        call.enqueue(new Callback<List<ApartmentBuilding>>() {
+        AgServiceAPI service = AgServiceClient.getServiceClient(getContext())
+                .create(AgServiceAPI.class);
+        Call<AgServiceResponse> call = service.getAll();
+        call.enqueue(new Callback<AgServiceResponse>() {
             @Override
-            public void onResponse(Call<List<ApartmentBuilding>> call, Response<List<ApartmentBuilding>> response) {
+            public void onResponse(Call<AgServiceResponse> call, Response<AgServiceResponse> response) {
                 if (response == null || response.body() == null || !isAdded())
                     return;
-                for (ApartmentBuilding ap : response.body()) {
+                List<Apartment> apartments = response.body().getEmbedded().getApartments();
+                for (Apartment ap : apartments) {
                     Log.e("Apartment: ", ap.getName());
                     mAdapter.add(ap);
                 }
@@ -70,7 +72,7 @@ public class GalleryFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<List<ApartmentBuilding>> call, Throwable t) {
+            public void onFailure(Call<AgServiceResponse> call, Throwable t) {
                 Log.e("GetApartments failed: ", t.getMessage());
             }
         });

@@ -1,94 +1,87 @@
+
 package com.michaelzhang.apartmentguide.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.os.Parcelable.Creator;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class FloorPlan implements Parcelable, Comparable<FloorPlan> {
 
-    private String bed;
-    private String bath;
-    private String price_from;
+    @SerializedName("bed")
+    @Expose
+    private Double bed;
+    @SerializedName("bath")
+    @Expose
+    private Double bath;
+    @SerializedName("priceFrom")
+    @Expose
+    private Integer priceFrom;
+    public final static Parcelable.Creator<FloorPlan> CREATOR = new Creator<FloorPlan>() {
 
-    public FloorPlan() {
-    }
 
-    public FloorPlan(String bed, String bath, String price_from) {
-        this.bed = bed;
-        this.bath = bath;
-        this.price_from = price_from;
-    }
-
-    protected FloorPlan(Parcel in) {
-        bed = in.readString();
-        bath = in.readString();
-        price_from = in.readString();
-    }
-
-    public static final Creator<FloorPlan> CREATOR = new Creator<FloorPlan>() {
-        @Override
+        @SuppressWarnings({
+                "unchecked"
+        })
         public FloorPlan createFromParcel(Parcel in) {
             return new FloorPlan(in);
         }
 
-        @Override
         public FloorPlan[] newArray(int size) {
-            return new FloorPlan[size];
+            return (new FloorPlan[size]);
         }
+
     };
 
-    public String getBed() {
+    protected FloorPlan(Parcel in) {
+        this.bed = ((Double) in.readValue((Double.class.getClassLoader())));
+        this.bath = ((Double) in.readValue((Double.class.getClassLoader())));
+        this.priceFrom = ((Integer) in.readValue((Integer.class.getClassLoader())));
+    }
+
+    public FloorPlan() {
+    }
+
+    public Double getBed() {
         return bed;
     }
 
-    public void setBed(String bed) {
+    public void setBed(Double bed) {
         this.bed = bed;
     }
 
-    public String getBath() {
+    public Double getBath() {
         return bath;
     }
 
-    public void setBath(String bath) {
+    public void setBath(Double bath) {
         this.bath = bath;
     }
 
-    public String getPriceFrom() {
-        return price_from;
+    public Integer getPriceFrom() {
+        return priceFrom;
     }
 
-    public void setPrice_from(String price_from) {
-        this.price_from = price_from;
+    public void setPriceFrom(Integer priceFrom) {
+        this.priceFrom = priceFrom;
     }
 
-    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(bed);
+        dest.writeValue(bath);
+        dest.writeValue(priceFrom);
+    }
+
     public int describeContents() {
         return 0;
     }
 
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        applyDefaultValues();
-        dest.writeString(bed);
-        dest.writeString(bath);
-        dest.writeString(price_from);
-    }
-
-    private void applyDefaultValues() {
-        if (bed == null)
-            bed = "";
-        if (bath == null)
-            bath = "";
-        if (price_from == null)
-            price_from = "";
-    }
-
-    @Override
     public int compareTo(FloorPlan o) {
-        if (Integer.valueOf(this.bed) > Integer.valueOf(o.bed))
-            return 1;
-        else if (Integer.valueOf(this.bed) == Integer.valueOf(o.bed))
-            return 0;
-        return -1;
+        if (this.bed > o.getBed()) return 1;
+        else if (this.bed < o.getBed()) return -1;
+        else return 0;
     }
 }
-

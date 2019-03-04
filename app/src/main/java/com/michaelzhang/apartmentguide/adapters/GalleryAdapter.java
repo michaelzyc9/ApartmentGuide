@@ -9,11 +9,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.michaelzhang.apartmentguide.R;
-import com.michaelzhang.apartmentguide.models.ApartmentBuilding;
+import com.michaelzhang.apartmentguide.models.Apartment;
 import com.michaelzhang.apartmentguide.models.FloorPlan;
+import com.michaelzhang.apartmentguide.models.Image;
 import com.squareup.picasso.Picasso;
 
-public class GalleryAdapter extends ArrayAdapter<ApartmentBuilding> {
+import java.util.HashMap;
+
+public class GalleryAdapter extends ArrayAdapter<Apartment> {
 
     public GalleryAdapter(Context context, int resource) {
         super(context, resource);
@@ -35,7 +38,14 @@ public class GalleryAdapter extends ArrayAdapter<ApartmentBuilding> {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        Picasso.with(getContext()).load(getItem(position).getImages()[0]).noFade().fit().into(holder.image);
+        Apartment apt = getItem(position);
+        HashMap<String, String> imageMap = new HashMap<>();
+        for (Image img : apt.getImages()) {
+            imageMap.put(img.getDescription(), img.getLink());
+        }
+
+        String imgKey = getContext().getString(R.string.image_interior_description);
+        Picasso.with(getContext()).load(imageMap.get(imgKey)).noFade().fit().into(holder.image);
         holder.priceFrom.setText(getPriceFrom(position));
         holder.cityZip.setText(getCityAndZip(position));
 
@@ -43,7 +53,7 @@ public class GalleryAdapter extends ArrayAdapter<ApartmentBuilding> {
     }
 
     private String getCityAndZip(int position) {
-        String address = getItem(position).getAddress();
+        String address = getItem(position).getAddress().getFullAddress();
         String[] addArr = address.split(",");
         if (addArr.length < 2)
             return null;
@@ -55,10 +65,10 @@ public class GalleryAdapter extends ArrayAdapter<ApartmentBuilding> {
         String priceFrom = null;
         for (FloorPlan fp : getItem(position).getFloorPlans()) {
             if (priceFrom == null) {
-                priceFrom = fp.getPriceFrom();
+                priceFrom = String.valueOf(fp.getPriceFrom());
             } else {
                 if (Integer.valueOf(fp.getPriceFrom()) < Integer.valueOf(priceFrom))
-                    priceFrom = fp.getPriceFrom();
+                    priceFrom = String.valueOf(fp.getPriceFrom());
             }
         }
         return priceFrom == null ? "N/A" : ("From $" + priceFrom);
